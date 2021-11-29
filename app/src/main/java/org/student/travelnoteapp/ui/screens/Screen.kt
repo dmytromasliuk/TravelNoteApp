@@ -7,7 +7,7 @@ sealed class Screen(val rout: String) {
     object ProfileUpdate: Screen(rout = "profile_update_screen")
     object TravelList: Screen(rout = "travel_list_screen")
     object TravelDetails: Screen(rout = "travel_details_screen")
-    object Navigation: Screen(rout = "navigation_screen")
+    object Map: Screen(rout = "map_screen")
 
 
 }

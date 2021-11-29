@@ -44,7 +44,7 @@ fun SetupNavGraph(
             ProfileScreen(navController = navController)
         }
         composable(
-            route = Screen.Navigation.rout
+            route = Screen.Map.rout
         ){
             ProfileScreen(navController = navController)
         }
