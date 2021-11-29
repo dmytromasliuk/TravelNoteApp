@@ -28,5 +28,25 @@ fun SetupNavGraph(
         ){
             ProfileScreen(navController = navController)
         }
+        composable(
+            route = Screen.ProfileUpdate.rout
+        ){
+            ProfileScreen(navController = navController)
+        }
+        composable(
+            route = Screen.TravelList.rout
+        ){
+            ProfileScreen(navController = navController)
+        }
+        composable(
+            route = Screen.TravelDetails.rout
+        ){
+            ProfileScreen(navController = navController)
+        }
+        composable(
+            route = Screen.Navigation.rout
+        ){
+            ProfileScreen(navController = navController)
+        }
     }
 }
