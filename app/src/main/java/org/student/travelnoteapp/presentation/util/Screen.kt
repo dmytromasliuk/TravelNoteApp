@@ -1,4 +1,4 @@
-package org.student.travelnoteapp.ui.screens
+package org.student.travelnoteapp.presentation.util
 
 sealed class Screen(val rout: String) {
     object Login: Screen(rout = "login_screen")

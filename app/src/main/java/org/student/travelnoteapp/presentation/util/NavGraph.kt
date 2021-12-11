@@ -1,9 +1,16 @@
-package org.student.travelnoteapp.ui.screens
+package org.student.travelnoteapp.presentation.util
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import org.student.travelnoteapp.presentation.login.LoginScreen
+import org.student.travelnoteapp.presentation.map.MapScreen
+import org.student.travelnoteapp.presentation.profile.ProfileScreen
+import org.student.travelnoteapp.presentation.profile.ProfileUpdateScreen
+import org.student.travelnoteapp.presentation.registration.RegistrationScreen
+import org.student.travelnoteapp.presentation.travel.TravelDetailsScreen
+import org.student.travelnoteapp.presentation.travel.TravelListScreen
 
 @Composable
 fun SetupNavGraph(
@@ -31,22 +38,22 @@ fun SetupNavGraph(
         composable(
             route = Screen.ProfileUpdate.rout
         ){
-            ProfileScreen(navController = navController)
+            ProfileUpdateScreen(navController = navController)
         }
         composable(
             route = Screen.TravelList.rout
         ){
-            ProfileScreen(navController = navController)
+            TravelListScreen(navController = navController)
         }
         composable(
             route = Screen.TravelDetails.rout
         ){
-            ProfileScreen(navController = navController)
+            TravelDetailsScreen(navController = navController)
         }
         composable(
             route = Screen.Map.rout
         ){
-            ProfileScreen(navController = navController)
+            MapScreen(navController = navController)
         }
     }
 }

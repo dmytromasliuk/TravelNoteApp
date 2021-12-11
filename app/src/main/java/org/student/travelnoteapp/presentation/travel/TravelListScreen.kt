@@ -1,4 +1,4 @@
-package org.student.travelnoteapp.ui.screens
+package org.student.travelnoteapp.presentation.travel
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview

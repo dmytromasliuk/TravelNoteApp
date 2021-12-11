@@ -1,4 +1,4 @@
-package org.student.travelnoteapp.ui.screens
+package org.student.travelnoteapp.util
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.List

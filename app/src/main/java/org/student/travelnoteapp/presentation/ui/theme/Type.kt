@@ -1,4 +1,4 @@
-package org.student.travelnoteapp.ui.theme
+package org.student.travelnoteapp.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

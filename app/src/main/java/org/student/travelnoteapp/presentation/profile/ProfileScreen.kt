@@ -1,4 +1,4 @@
-package org.student.travelnoteapp.ui.screens
+package org.student.travelnoteapp.presentation.profile
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -12,20 +12,22 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import org.student.travelnoteapp.R
+import org.student.travelnoteapp.presentation.registration.RegistrationViewModel
+import org.student.travelnoteapp.presentation.util.Screen
 
 
 @Composable
 fun ProfileScreen (
-    navController : NavController
+    navController : NavController,
+    viewModel: ProfileViewModel = hiltViewModel()
 ) {
 
     Column(
@@ -33,13 +35,6 @@ fun ProfileScreen (
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-
-        var fistNameText by rememberSaveable { mutableStateOf("") }
-        var lastNameText by rememberSaveable { mutableStateOf("") }
-        var emailText by rememberSaveable { mutableStateOf("") }
-        var phoneText by rememberSaveable { mutableStateOf("") }
-        var countryText by rememberSaveable { mutableStateOf("") }
-
 
         Text(
             modifier = Modifier.padding(bottom = 25.dp),
@@ -49,10 +44,11 @@ fun ProfileScreen (
             fontSize = MaterialTheme.typography.h4.fontSize
         )
 
+        //FirstNameTextField
         OutlinedTextField(
-            value = fistNameText,
+            value = viewModel.firstNameText.value,
             onValueChange = {
-                    newText -> fistNameText = newText
+                    viewModel.setFirstNameText(it)
             },
             label = {
                 Text(text = "First name")
@@ -72,10 +68,11 @@ fun ProfileScreen (
             )
         )
 
+        //LastNameTextField
         OutlinedTextField(
-            value = lastNameText,
+            value = viewModel.lastNameText.value,
             onValueChange = {
-                    newText -> lastNameText = newText
+                    viewModel.setLastNameText(it)
             },
             label = {
                 Text(text = "Last name")
@@ -95,10 +92,11 @@ fun ProfileScreen (
             )
         )
 
+        //EmailTextField
         OutlinedTextField(
-            value = emailText,
+            value = viewModel.emailText.value,
             onValueChange = {
-                    newText -> emailText = newText
+                    viewModel.setEmailText(it)
             },
             label = {
                 Text(text = "Email")
@@ -118,10 +116,11 @@ fun ProfileScreen (
             )
         )
 
+        //phoneTextField
         OutlinedTextField(
-            value = phoneText,
+            value = viewModel.phoneText.value,
             onValueChange = {
-                    newText -> phoneText = newText
+                    viewModel.setPhoneText(it)
             },
             label = {
                 Text(text = "Phone")
@@ -150,10 +149,11 @@ fun ProfileScreen (
             )
         )
 
+        //CountryTextField
         OutlinedTextField(
-            value = countryText,
+            value = viewModel.countryText.value,
             onValueChange = {
-                    newText -> countryText = newText
+                    viewModel.setCountryText(it)
             },
             label = {
                 Text(text = "Country")
@@ -182,6 +182,7 @@ fun ProfileScreen (
             )
         )
 
+        //LogoutButton
         Button(
             onClick = {
 

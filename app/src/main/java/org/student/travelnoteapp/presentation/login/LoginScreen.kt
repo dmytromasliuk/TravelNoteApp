@@ -1,4 +1,4 @@
-package org.student.travelnoteapp.ui.screens
+package org.student.travelnoteapp.presentation.login
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -6,7 +6,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -19,24 +18,24 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.student.travelnoteapp.R
+import org.student.travelnoteapp.presentation.util.Screen
 
 @Composable
-fun RegistrationScreen(
-    navController: NavController
+fun LoginScreen(
+    navController: NavController,
+    viewModel: LoginViewModel = hiltViewModel()
 ) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
-
     ){
-        var fistNameText by rememberSaveable { mutableStateOf("") }
-        var lastNameText by rememberSaveable { mutableStateOf("") }
-        var emailText by rememberSaveable { mutableStateOf("") }
-        var passwordText by rememberSaveable { mutableStateOf("") }
+
         var passwordVisibility by rememberSaveable { mutableStateOf(false)}
         val visibilityIcon = if (passwordVisibility)
             painterResource(id = R.drawable.design_ic_visibility)
@@ -45,72 +44,27 @@ fun RegistrationScreen(
 
         Text(
             modifier = Modifier.padding(bottom = 25.dp),
-            text = "Registration",
+            text = "TravelNote",
             color = MaterialTheme.colors.primary,
             fontWeight = FontWeight.Bold,
-            fontSize = MaterialTheme.typography.h4.fontSize
+            fontSize = MaterialTheme.typography.h3.fontSize
         )
 
+        //EmailTextField
         OutlinedTextField(
-            value = fistNameText,
+            value = viewModel.emailText.value,
             onValueChange = {
-                newText -> fistNameText = newText
-            },
-            label = {
-                Text(text = "First name")
-            },
-            leadingIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        imageVector = Icons.Filled.Person,
-                        contentDescription = "First name icon")
-                }
-            },
-            modifier = Modifier.padding(5.dp),
-            maxLines = 1,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Done
-            )
-        )
-
-        OutlinedTextField(
-            value = lastNameText,
-            onValueChange = {
-                    newText -> lastNameText = newText
-            },
-            label = {
-                Text(text = "Last name")
-            },
-            leadingIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        imageVector = Icons.Filled.Person,
-                        contentDescription = "Last name")
-                }
-            },
-            modifier = Modifier.padding(5.dp),
-            maxLines = 1,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Done
-            )
-        )
-
-        OutlinedTextField(
-            value = emailText,
-            onValueChange = {
-                    newText -> emailText = newText
+                    viewModel.setEmailText(it)
             },
             label = {
                 Text(text = "Email")
             },
             leadingIcon = {
-                          IconButton(onClick = { /*TODO*/ }) {
-                              Icon(
-                                  imageVector = Icons.Filled.Email,
-                                  contentDescription = "Email")
-                          }
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(
+                        imageVector = Icons.Filled.Email,
+                        contentDescription = "Email")
+                }
             },
             modifier = Modifier.padding(5.dp),
             maxLines = 1,
@@ -120,10 +74,11 @@ fun RegistrationScreen(
             )
         )
 
+        //PasswordTextField
         OutlinedTextField(
-            value = passwordText,
+            value = viewModel.passwordText.value,
             onValueChange = {
-                    newText -> passwordText = newText
+                    viewModel.setPasswordText(it)
             },
             label = {
                 Text(text = "Password")
@@ -155,19 +110,42 @@ fun RegistrationScreen(
                 imeAction = ImeAction.Done
             )
         )
-        
+
+        //SigninButton
         Button(
             onClick = {
-
-                navController.navigate(Screen.Login.rout){
-                    popUpTo(Screen.Login.rout){
-                        inclusive = true
-                    }
-                }
+                navController.navigate(route = Screen.Profile.rout)
             },
             modifier = Modifier
                 .padding(10.dp)
                 .size(150.dp, 40.dp)
+        ) {
+            Text(
+                text = "Sign in",
+                color = MaterialTheme.colors.secondary,
+                fontWeight = FontWeight.Bold,
+                fontSize = MaterialTheme.typography.button.fontSize
+            )
+
+        }
+
+        //SignupTextField
+        Text(
+            modifier = Modifier.padding(top = 25.dp),
+            text = "Don't have an account? Please, sign up!",
+            color = MaterialTheme.colors.primary,
+            fontWeight = FontWeight.Bold,
+            fontSize = MaterialTheme.typography.body2.fontSize
+        )
+
+        //SignupButton
+        Button(
+            onClick = {
+                navController.navigate(route = Screen.Registration.rout)
+            },
+            modifier = Modifier
+                .padding(10.dp)
+                .size(100.dp, 40.dp)
         ) {
             Text(
                 text = "Sign up",
@@ -182,8 +160,8 @@ fun RegistrationScreen(
 
 @Composable
 @Preview(showBackground = true)
-fun RegistrationScreenPreview(){
-    RegistrationScreen(
+fun LoginScreenPreview(){
+    LoginScreen(
         navController = rememberNavController()
     )
 }
