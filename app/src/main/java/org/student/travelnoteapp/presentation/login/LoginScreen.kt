@@ -114,7 +114,7 @@ fun LoginScreen(
         //SigninButton
         Button(
             onClick = {
-                navController.navigate(route = Screen.Profile.rout)
+                navController.navigate(route = Screen.TravelList.rout)
             },
             modifier = Modifier
                 .padding(10.dp)

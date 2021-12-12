@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.material.Scaffold
 import dagger.hilt.android.AndroidEntryPoint
 import org.student.travelnoteapp.data.remote.services.RegistrationService
 import org.student.travelnoteapp.presentation.util.SetupNavGraph
@@ -20,8 +21,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TravelNoteAppTheme {
-                navController = rememberNavController()
-                SetupNavGraph(navController = navController)
+                Scaffold() {
+                    navController = rememberNavController()
+                    SetupNavGraph(navController = navController)
+                }
             }
         }
     }
