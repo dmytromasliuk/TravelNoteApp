@@ -1,5 +1,6 @@
 package org.student.travelnoteapp.presentation.login
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -10,6 +11,8 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -22,6 +25,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.student.travelnoteapp.R
+import org.student.travelnoteapp.presentation.ui.theme.AliceBlue
 import org.student.travelnoteapp.presentation.util.Screen
 
 @Composable
@@ -122,7 +126,7 @@ fun LoginScreen(
         ) {
             Text(
                 text = "Sign in",
-                color = MaterialTheme.colors.secondary,
+                color = MaterialTheme.colors.background,
                 fontWeight = FontWeight.Bold,
                 fontSize = MaterialTheme.typography.button.fontSize
             )
@@ -149,7 +153,7 @@ fun LoginScreen(
         ) {
             Text(
                 text = "Sign up",
-                color = MaterialTheme.colors.secondary,
+                color = MaterialTheme.colors.background,
                 fontWeight = FontWeight.Bold,
                 fontSize = MaterialTheme.typography.button.fontSize
             )

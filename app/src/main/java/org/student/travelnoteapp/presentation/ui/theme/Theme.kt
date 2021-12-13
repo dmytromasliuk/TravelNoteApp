@@ -1,10 +1,14 @@
 package org.student.travelnoteapp.presentation.ui.theme
 
+import android.graphics.drawable.GradientDrawable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.LinearGradientShader
 
 //Old app theme
 //private val DarkColorPalette = darkColors(
@@ -29,16 +33,18 @@ import androidx.compose.runtime.Composable
 //)
 
 //My new app theme
-private val DarkColorPalette = darkColors(
-    primary = CoolGrey50PC1063,
-    primaryVariant = FrenchGrey90PC1076,
-    secondary = WhitePC937
-)
+//private val DarkColorPalette = darkColors(
+//    primary = CoolGrey50PC1063,
+//    primaryVariant = FrenchGrey90PC1076,
+//    secondary = WhitePC937
+//)
 
 private val LightColorPalette = lightColors(
-    primary = CoolGrey70PC1065,
-    primaryVariant = FrenchGrey90PC1076,
-    secondary = WhitePC937
+    primary = BottleGreen,
+    primaryVariant = DarkJungleGreen,
+    background = White,
+    surface = WildBlueYonder,
+    onPrimary = Manatee
 
     /* Other default colors to override
 background = Color.White,
@@ -52,11 +58,12 @@ onSurface = Color.Black,
 
 @Composable
 fun TravelNoteAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
+    val colors = LightColorPalette
+//    val colors = if (darkTheme) {
+//        DarkColorPalette
+//    } else {
+//        LightColorPalette
+//    }
 
     MaterialTheme(
             colors = colors,

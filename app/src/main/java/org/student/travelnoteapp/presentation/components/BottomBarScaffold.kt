@@ -20,7 +20,7 @@ fun BottomBarScaffold(
         bottomBar = {
             BottomAppBar(
                 modifier = Modifier.fillMaxWidth(),
-                backgroundColor = MaterialTheme.colors.primaryVariant
+                backgroundColor = MaterialTheme.colors.primary
             ) {
                 BottomNavigation(
                     modifier = Modifier.fillMaxWidth()

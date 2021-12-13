@@ -23,8 +23,8 @@ fun RowScope.BottomNavItem(
     enabled : Boolean = true,
     icon : ImageVector,
     contentDescription : String? = null,
-    selectedColor : Color = MaterialTheme.colors.primary,
-    unselectedColor : Color = Color.Gray,
+    selectedColor : Color = MaterialTheme.colors.background,
+    unselectedColor : Color = MaterialTheme.colors.onPrimary,
     onClick: () -> Unit
 ) {
 
