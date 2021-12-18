@@ -1,24 +1,42 @@
 package org.student.travelnoteapp.presentation.travel
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.student.travelnoteapp.presentation.components.BottomBarScaffold
+
 
 @Composable
 fun TravelListScreen(
     navController: NavController
 ) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
 
-    BottomBarScaffold () {
+        Text(
+            modifier = Modifier.padding(bottom = 25.dp),
+            text = "Travel list",
+            color = MaterialTheme.colors.primary,
+            fontWeight = FontWeight.Bold,
+            fontSize = MaterialTheme.typography.h4.fontSize
+        )
 
+        BottomBarScaffold (navController = navController) {
+
+        }
     }
+
+
 }
 
 @Composable

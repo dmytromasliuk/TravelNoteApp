@@ -9,49 +9,55 @@ import org.student.travelnoteapp.presentation.map.MapScreen
 import org.student.travelnoteapp.presentation.profile.ProfileScreen
 import org.student.travelnoteapp.presentation.profile.ProfileUpdateScreen
 import org.student.travelnoteapp.presentation.registration.RegistrationScreen
+import org.student.travelnoteapp.presentation.travel.CurrentTravelTimetableScreen
 import org.student.travelnoteapp.presentation.travel.TravelDetailsScreen
 import org.student.travelnoteapp.presentation.travel.TravelListScreen
 
 @Composable
-fun SetupNavGraph(
+fun NavGraph(
     navController: NavHostController
 ){
     NavHost(
         navController = navController,
-        startDestination = Screen.Login.rout
+        startDestination = Screen.Login.route
     ){
         composable(
-            route = Screen.Login.rout
+            route = Screen.Login.route
         ){
             LoginScreen(navController = navController)
         }
         composable(
-            route = Screen.Registration.rout
+            route = Screen.Registration.route
         ){
             RegistrationScreen(navController = navController)
         }
         composable(
-            route = Screen.Profile.rout
+            route = Screen.Profile.route
         ){
             ProfileScreen(navController = navController)
         }
         composable(
-            route = Screen.ProfileUpdate.rout
+            route = Screen.ProfileUpdate.route
         ){
             ProfileUpdateScreen(navController = navController)
         }
         composable(
-            route = Screen.TravelList.rout
+            route = Screen.TravelList.route
         ){
             TravelListScreen(navController = navController)
         }
         composable(
-            route = Screen.TravelDetails.rout
+            route = Screen.TravelDetails.route
         ){
             TravelDetailsScreen(navController = navController)
         }
         composable(
-            route = Screen.Map.rout
+            route = Screen.CurrentTravelTimetable.route
+        ){
+            CurrentTravelTimetableScreen(navController = navController)
+        }
+        composable(
+            route = Screen.Map.route
         ){
             MapScreen(navController = navController)
         }

@@ -118,7 +118,7 @@ fun LoginScreen(
         //SigninButton
         Button(
             onClick = {
-                navController.navigate(route = Screen.TravelList.rout)
+                navController.navigate(route = Screen.TravelList.route)
             },
             modifier = Modifier
                 .padding(10.dp)
@@ -145,7 +145,7 @@ fun LoginScreen(
         //SignupButton
         Button(
             onClick = {
-                navController.navigate(route = Screen.Registration.rout)
+                navController.navigate(route = Screen.Registration.route)
             },
             modifier = Modifier
                 .padding(10.dp)

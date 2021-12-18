@@ -1,11 +1,10 @@
-package org.student.travelnoteapp.presentation.map
+package org.student.travelnoteapp.presentation.travel
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,7 +17,7 @@ import androidx.navigation.compose.rememberNavController
 import org.student.travelnoteapp.presentation.components.BottomBarScaffold
 
 @Composable
-fun MapScreen(
+fun CurrentTravelTimetableScreen(
     navController: NavController
 ) {
 
@@ -30,7 +29,7 @@ fun MapScreen(
 
         Text(
             modifier = Modifier.padding(bottom = 25.dp),
-            text = "Map",
+            text = "Current travel timetable",
             color = MaterialTheme.colors.primary,
             fontWeight = FontWeight.Bold,
             fontSize = MaterialTheme.typography.h4.fontSize
@@ -41,14 +40,12 @@ fun MapScreen(
         }
     }
 
-
-
 }
 
 @Composable
 @Preview(showBackground = true)
-fun MapScreenPreview() {
-    MapScreen(
+fun CurrentTravelTimetableScreenPreview() {
+    CurrentTravelTimetableScreen(
         navController = rememberNavController()
     )
 }

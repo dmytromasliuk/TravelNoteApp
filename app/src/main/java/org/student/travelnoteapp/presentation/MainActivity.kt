@@ -8,8 +8,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.compose.material.Scaffold
 import dagger.hilt.android.AndroidEntryPoint
 import org.student.travelnoteapp.data.remote.services.RegistrationService
-import org.student.travelnoteapp.presentation.util.SetupNavGraph
 import org.student.travelnoteapp.presentation.ui.theme.TravelNoteAppTheme
+import org.student.travelnoteapp.presentation.util.NavGraph
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
             TravelNoteAppTheme {
                 Scaffold() {
                     navController = rememberNavController()
-                    SetupNavGraph(navController = navController)
+                    NavGraph(navController = navController)
                 }
             }
         }

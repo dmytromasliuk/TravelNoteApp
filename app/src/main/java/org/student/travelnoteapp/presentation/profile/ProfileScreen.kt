@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import org.student.travelnoteapp.presentation.components.BottomBarScaffold
 import org.student.travelnoteapp.presentation.registration.RegistrationViewModel
 import org.student.travelnoteapp.presentation.util.Screen
 
@@ -186,8 +187,8 @@ fun ProfileScreen (
         Button(
             onClick = {
 
-                navController.navigate(Screen.Login.rout){
-                    popUpTo(Screen.Login.rout){
+                navController.navigate(Screen.Login.route){
+                    popUpTo(Screen.Login.route){
                         inclusive = true
                     }
                 }
@@ -204,7 +205,12 @@ fun ProfileScreen (
             )
 
         }
+
+        BottomBarScaffold (navController = navController) {
+
+        }
     }
+
 
 }
 

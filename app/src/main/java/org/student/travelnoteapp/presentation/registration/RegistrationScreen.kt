@@ -168,8 +168,8 @@ fun RegistrationScreen(
         Button(
             onClick = {
 
-                navController.navigate(Screen.Login.rout){
-                    popUpTo(Screen.Login.rout){
+                navController.navigate(Screen.Login.route){
+                    popUpTo(Screen.Login.route){
                         inclusive = true
                     }
                 }

@@ -39,19 +39,19 @@ fun RowScope.BottomNavItem(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .drawBehind {
-                        drawLine(
-                            color = if (selected)
-                                selectedColor
-                            else
-                                unselectedColor,
-                            start = Offset(0f, size.height),
-                            end = Offset(size.width, size.height),
-                            strokeWidth = 2.dp.toPx(),
-                            cap = StrokeCap.Round
-                        )
-
-                    }
+//                    .drawBehind {
+//                        drawLine(
+//                            color = if (selected)
+//                                selectedColor
+//                            else
+//                                unselectedColor,
+//                            start = Offset(0f, size.height),
+//                            end = Offset(size.width, size.height),
+//                            strokeWidth = 2.dp.toPx(),
+//                            cap = StrokeCap.Round
+//                        )
+//
+//                    }
             ) {
                 Icon(
                     imageVector = icon,
