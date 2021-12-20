@@ -34,12 +34,7 @@ fun CurrentTravelTimetableScreen(
             fontWeight = FontWeight.Bold,
             fontSize = MaterialTheme.typography.h4.fontSize
         )
-
-        BottomBarScaffold (navController = navController) {
-
-        }
     }
-
 }
 
 @Composable

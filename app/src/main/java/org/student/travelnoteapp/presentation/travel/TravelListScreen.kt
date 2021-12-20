@@ -17,6 +17,7 @@ import org.student.travelnoteapp.presentation.components.BottomBarScaffold
 fun TravelListScreen(
     navController: NavController
 ) {
+
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -31,12 +32,8 @@ fun TravelListScreen(
             fontSize = MaterialTheme.typography.h4.fontSize
         )
 
-        BottomBarScaffold (navController = navController) {
 
-        }
     }
-
-
 }
 
 @Composable

@@ -1,8 +1,6 @@
 package org.student.travelnoteapp.presentation.components
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.ui.graphics.Color
@@ -15,6 +13,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import org.student.travelnoteapp.presentation.ui.theme.SpaceLarge
+import org.student.travelnoteapp.presentation.ui.theme.SpaceMedium
+import org.student.travelnoteapp.presentation.ui.theme.SpaceSmall
 
 @Composable
 fun RowScope.BottomNavItem(
@@ -39,19 +40,21 @@ fun RowScope.BottomNavItem(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-//                    .drawBehind {
-//                        drawLine(
-//                            color = if (selected)
-//                                selectedColor
-//                            else
-//                                unselectedColor,
-//                            start = Offset(0f, size.height),
-//                            end = Offset(size.width, size.height),
-//                            strokeWidth = 2.dp.toPx(),
-//                            cap = StrokeCap.Round
-//                        )
-//
-//                    }
+                    //.padding(SpaceSmall)
+                    .drawBehind() {
+                        if (selected) {
+                            drawLine(
+                                color = if (selected)
+                                    selectedColor
+                                else
+                                    unselectedColor,
+                                start = Offset(size.width / 2, size.height),
+                                end = Offset(size.width / 2, size.height),
+                                strokeWidth = 3.dp.toPx(),
+                                cap = StrokeCap.Round
+                            )
+                        }
+                    }
             ) {
                 Icon(
                     imageVector = icon,

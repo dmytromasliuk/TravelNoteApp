@@ -1,13 +1,22 @@
 package org.student.travelnoteapp.presentation
 
 import android.os.Bundle
+import android.view.Surface
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.navigation.compose.currentBackStackEntryAsState
 import dagger.hilt.android.AndroidEntryPoint
+import org.student.travelnoteapp.data.remote.models.BottomNavItem
 import org.student.travelnoteapp.data.remote.services.RegistrationService
+import org.student.travelnoteapp.presentation.components.BottomBarScaffold
 import org.student.travelnoteapp.presentation.ui.theme.TravelNoteAppTheme
 import org.student.travelnoteapp.presentation.util.NavGraph
 
@@ -21,9 +30,23 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TravelNoteAppTheme {
-                Scaffold() {
+                Surface(
+                    modifier = Modifier.fillMaxSize()
+                ){
                     navController = rememberNavController()
-                    NavGraph(navController = navController)
+                    val navBackStackEntry by navController.currentBackStackEntryAsState()
+                    BottomBarScaffold(
+                        modifier = Modifier.fillMaxSize(),
+                        navController = navController,
+                        showBottomBar = navBackStackEntry?.destination?.route in listOf(
+                            BottomNavItem.TravelList.route,
+                            BottomNavItem.CurrentTravelTimetable.route,
+                            BottomNavItem.Map.route,
+                            BottomNavItem.Profile.route
+                        )
+                    ) {
+                        NavGraph(navController = navController)
+                    }
                 }
             }
         }

@@ -49,7 +49,7 @@ fun ProfileScreen (
         OutlinedTextField(
             value = viewModel.firstNameText.value,
             onValueChange = {
-                    viewModel.setFirstNameText(it)
+                viewModel.setFirstNameText(it)
             },
             label = {
                 Text(text = "First name")
@@ -73,7 +73,7 @@ fun ProfileScreen (
         OutlinedTextField(
             value = viewModel.lastNameText.value,
             onValueChange = {
-                    viewModel.setLastNameText(it)
+                viewModel.setLastNameText(it)
             },
             label = {
                 Text(text = "Last name")
@@ -97,7 +97,7 @@ fun ProfileScreen (
         OutlinedTextField(
             value = viewModel.emailText.value,
             onValueChange = {
-                    viewModel.setEmailText(it)
+                viewModel.setEmailText(it)
             },
             label = {
                 Text(text = "Email")
@@ -121,7 +121,7 @@ fun ProfileScreen (
         OutlinedTextField(
             value = viewModel.phoneText.value,
             onValueChange = {
-                    viewModel.setPhoneText(it)
+                viewModel.setPhoneText(it)
             },
             label = {
                 Text(text = "Phone")
@@ -135,7 +135,7 @@ fun ProfileScreen (
             },
             trailingIcon = {
                 IconButton(onClick = {
-                    
+
                 }) {
                     Icon(
                         imageVector = Icons.Filled.Edit,
@@ -154,7 +154,7 @@ fun ProfileScreen (
         OutlinedTextField(
             value = viewModel.countryText.value,
             onValueChange = {
-                    viewModel.setCountryText(it)
+                viewModel.setCountryText(it)
             },
             label = {
                 Text(text = "Country")
@@ -205,13 +205,7 @@ fun ProfileScreen (
             )
 
         }
-
-        BottomBarScaffold (navController = navController) {
-
-        }
     }
-
-
 }
 
 @Composable
