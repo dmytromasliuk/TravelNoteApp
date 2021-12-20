@@ -24,7 +24,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.student.travelnoteapp.R
 import org.student.travelnoteapp.data.remote.services.RegistrationService
-import org.student.travelnoteapp.presentation.login.LoginViewModel
 import org.student.travelnoteapp.presentation.util.Screen
 
 private val service = RegistrationService.create()

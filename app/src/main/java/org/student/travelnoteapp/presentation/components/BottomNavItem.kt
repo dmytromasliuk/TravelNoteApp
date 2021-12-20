@@ -13,9 +13,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import org.student.travelnoteapp.presentation.ui.theme.SpaceLarge
-import org.student.travelnoteapp.presentation.ui.theme.SpaceMedium
-import org.student.travelnoteapp.presentation.ui.theme.SpaceSmall
 
 @Composable
 fun RowScope.BottomNavItem(
@@ -41,7 +38,7 @@ fun RowScope.BottomNavItem(
                 modifier = Modifier
                     .fillMaxWidth()
                     //.padding(SpaceSmall)
-                    .drawBehind() {
+                    .drawBehind {
                         if (selected) {
                             drawLine(
                                 color = if (selected)
