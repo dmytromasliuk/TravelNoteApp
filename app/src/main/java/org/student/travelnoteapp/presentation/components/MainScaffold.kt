@@ -7,13 +7,13 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.student.travelnoteapp.data.remote.models.BottomNavItem
-import org.student.travelnoteapp.presentation.util.Screen
 
 @Composable
-fun BottomBarScaffold(
+fun MainScaffold(
     modifier: Modifier = Modifier,
     navController: NavController,
     bottomNavItems: List<BottomNavItem> = listOf(
@@ -22,11 +22,29 @@ fun BottomBarScaffold(
         BottomNavItem.Map,
         BottomNavItem.Profile
     ),
+    topBarTitle: String? = null,
+    showTopBar: Boolean = true,
     showBottomBar: Boolean = true,
     content: @Composable () -> Unit
 ) {
 
     Scaffold(
+        topBar = {
+            if (showTopBar) {
+                TopAppBar(
+                    contentColor = MaterialTheme.colors.onBackground,
+                    elevation = 5.dp,
+                    title = {
+                        if (topBarTitle != null){
+                            Text(
+                                text = topBarTitle,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+                )
+            }
+        },
         bottomBar = {
             if (showBottomBar) {
                 BottomAppBar(
@@ -48,11 +66,11 @@ fun BottomBarScaffold(
                                 icon = bottomNavItem.icon,
                                 contentDescription = bottomNavItem.contentDescription,
                                 selected = bottomNavItem.route == navController.currentDestination?.route,
+
                             ){
                                 navController.navigate(bottomNavItem.route){
-                                    popUpTo(Screen.TravelList.route){
-                                        inclusive = true
-                                    }
+                                    launchSingleTop = true
+                                    popUpTo(BottomNavItem.TravelList.route)
                                 }
                             }
                         }

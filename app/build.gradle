@@ -93,6 +93,11 @@ dependencies {
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
     implementation "com.google.accompanist:accompanist-flowlayout:0.17.0"
 
+    //Accompanist - System UI Controller
+    def accompanist_version = "0.20.3"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
+
+
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'

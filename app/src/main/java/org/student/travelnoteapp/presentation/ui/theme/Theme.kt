@@ -3,6 +3,7 @@ package org.student.travelnoteapp.presentation.ui.theme
 import android.graphics.drawable.GradientDrawable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.geometry.Offset
@@ -33,11 +34,13 @@ import androidx.compose.ui.graphics.LinearGradientShader
 //)
 
 //My new app theme
-//private val DarkColorPalette = darkColors(
-//    primary = CoolGrey50PC1063,
-//    primaryVariant = FrenchGrey90PC1076,
-//    secondary = WhitePC937
-//)
+private val DarkColorPalette = darkColors(
+    primary = BottleGreen,
+    primaryVariant = DarkJungleGreen,
+    background = Color.Black,
+    surface = WildBlueYonder,
+    onPrimary = Manatee
+)
 
 private val LightColorPalette = lightColors(
     primary = BottleGreen,
@@ -58,12 +61,11 @@ onSurface = Color.Black,
 
 @Composable
 fun TravelNoteAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
-    val colors = LightColorPalette
-//    val colors = if (darkTheme) {
-//        DarkColorPalette
-//    } else {
-//        LightColorPalette
-//    }
+    val colors = if (darkTheme) {
+        DarkColorPalette
+    } else {
+        LightColorPalette
+    }
 
     MaterialTheme(
             colors = colors,
