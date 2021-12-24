@@ -26,7 +26,9 @@ import org.student.travelnoteapp.presentation.util.Screen
 class MainActivity : ComponentActivity() {
 
     private lateinit var navController: NavHostController
-    private val service = RegistrationService.create()
+    private val service by lazy {
+        RegistrationService.create()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,12 +53,13 @@ class MainActivity : ComponentActivity() {
                             BottomNavItem.Map.route,
                             BottomNavItem.Profile.route
                         ),
-                        showTopBar = navBackStackEntry?.destination?.route in listOf(
-                            BottomNavItem.TravelList.route,
-                            BottomNavItem.CurrentTravelTimetable.route,
-                            BottomNavItem.Map.route,
-                            BottomNavItem.Profile.route
-                        )
+                        showTopBar = false
+//                        showTopBar = navBackStackEntry?.destination?.route in listOf(
+//                            BottomNavItem.TravelList.route,
+//                            BottomNavItem.CurrentTravelTimetable.route,
+//                            BottomNavItem.Map.route,
+//                            BottomNavItem.Profile.route
+//                        )
                     ) {
                         NavGraph(navController = navController)
                     }

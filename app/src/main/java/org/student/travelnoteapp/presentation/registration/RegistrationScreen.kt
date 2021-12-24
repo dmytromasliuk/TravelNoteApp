@@ -23,10 +23,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.student.travelnoteapp.R
+import org.student.travelnoteapp.data.remote.models.requests.RegistrationRequest
 import org.student.travelnoteapp.data.remote.services.RegistrationService
 import org.student.travelnoteapp.presentation.util.Screen
-
-private val service = RegistrationService.create()
 
 @Composable
 fun RegistrationScreen(
@@ -166,7 +165,7 @@ fun RegistrationScreen(
         //Submit button
         Button(
             onClick = {
-
+                viewModel.register()
                 navController.navigate(Screen.Login.route){
                     popUpTo(Screen.Login.route){
                         inclusive = true

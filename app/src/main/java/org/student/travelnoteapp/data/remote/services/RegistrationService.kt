@@ -12,7 +12,7 @@ interface RegistrationService {
 
     companion object {
         fun create(): RegistrationService {
-            return RegistrationServiceImplementation(
+            return RegistrationServiceImpl(
                 client = HttpClient(Android) {
                     install(JsonFeature) {
                         serializer = KotlinxSerializer()

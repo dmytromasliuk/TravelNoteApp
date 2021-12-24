@@ -3,12 +3,20 @@ package org.student.travelnoteapp.presentation.registration
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.student.travelnoteapp.data.remote.models.requests.RegistrationRequest
+import org.student.travelnoteapp.data.remote.services.RegistrationService
 import javax.inject.Inject
 
 @HiltViewModel
 class RegistrationViewModel @Inject constructor() : ViewModel() {
 
+    private val service by lazy {
+        RegistrationService.create()
+    }
     private val _firstNameText = mutableStateOf("")
     val firstNameText : State<String> = _firstNameText
 
@@ -35,5 +43,17 @@ class RegistrationViewModel @Inject constructor() : ViewModel() {
 
     fun setPasswordText(password : String){
         _passwordText.value = password
+    }
+
+    fun register() {
+        viewModelScope.launch(Dispatchers.Main) {
+            val request = RegistrationRequest(
+                firstNameText.toString(),
+                lastNameText.toString(),
+                emailText.toString(),
+                passwordText.toString()
+            )
+            service.register(request)
+        }
     }
 }
