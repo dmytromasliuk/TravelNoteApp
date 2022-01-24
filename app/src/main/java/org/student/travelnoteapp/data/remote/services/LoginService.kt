@@ -11,13 +11,7 @@ import org.student.travelnoteapp.data.remote.models.requests.RegistrationRequest
 
 interface LoginService {
 
-    val email: String
-    val password: String
-
     suspend fun login(loginRequest: LoginRequest): String?
-
-    fun setEmail(email: String)
-    fun setPassword(password: String)
 
     companion object {
         fun create(): LoginService {
@@ -26,15 +20,13 @@ interface LoginService {
                     install(JsonFeature) {
                         serializer = KotlinxSerializer()
                     }
-                    install(Auth) {
-                        basic {
-                            credentials {
-                                BasicAuthCredentials(
-                                    username =
-                                )
-                            }
-                        }
-                    }
+//                    install(Auth){
+//                        basic {
+//                            credentials {
+//                                BasicAuthCredentials()
+//                            }
+//                        }
+//                    }
                 }
             )
         }

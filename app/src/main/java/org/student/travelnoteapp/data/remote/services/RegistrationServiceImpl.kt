@@ -8,7 +8,7 @@ import org.student.travelnoteapp.data.remote.HttpRoutes
 import org.student.travelnoteapp.data.remote.models.requests.RegistrationRequest
 
 class RegistrationServiceImpl(
-    private val client : HttpClient
+    private val client: HttpClient
 ) : RegistrationService {
 
     override suspend fun register(registrationRequest: RegistrationRequest): String? {

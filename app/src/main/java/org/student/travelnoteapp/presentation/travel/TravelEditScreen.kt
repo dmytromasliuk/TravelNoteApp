@@ -1,4 +1,4 @@
-package org.student.travelnoteapp.presentation.map
+package org.student.travelnoteapp.presentation.travel
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,7 +16,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun MapScreen(
+fun TravelEditScreen(
     navController: NavController
 ) {
 
@@ -28,18 +28,20 @@ fun MapScreen(
 
         Text(
             modifier = Modifier.padding(bottom = 25.dp),
-            text = "Map",
+            text = "Travel edit",
             color = MaterialTheme.colors.primary,
             fontWeight = FontWeight.Bold,
             fontSize = MaterialTheme.typography.h4.fontSize
         )
+
+
     }
 }
 
 @Composable
 @Preview(showBackground = true)
-fun MapScreenPreview() {
-    MapScreen(
+fun TravelEditScreenPreview() {
+    TravelEditScreen(
         navController = rememberNavController()
     )
 }

@@ -7,8 +7,8 @@ sealed class Screen(val route: String) {
     object ProfileUpdate: Screen(route = "profile_update_screen")
     object TravelList: Screen(route = "travel_list_screen")
     object TravelDetails: Screen(route = "travel_details_screen")
+    object AddNewTravel: Screen(route = "add_new_travel_screen")
+    object TravelEdit: Screen(route = "travel_edit_screen")
     object CurrentTravelTimetable: Screen(route = "current_travel_timetable_screen")
-    object Map: Screen(route = "map_screen")
-
 
 }

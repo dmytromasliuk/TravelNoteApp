@@ -15,7 +15,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
-import org.student.travelnoteapp.data.remote.models.BottomNavItem
+import org.student.travelnoteapp.presentation.components.BottomNavItem
 import org.student.travelnoteapp.data.remote.services.RegistrationService
 import org.student.travelnoteapp.presentation.components.MainScaffold
 import org.student.travelnoteapp.presentation.ui.theme.TravelNoteAppTheme
@@ -50,16 +50,12 @@ class MainActivity : ComponentActivity() {
                         showBottomBar = navBackStackEntry?.destination?.route in listOf(
                             BottomNavItem.TravelList.route,
                             BottomNavItem.CurrentTravelTimetable.route,
-                            BottomNavItem.Map.route,
                             BottomNavItem.Profile.route
                         ),
-                        showTopBar = false
-//                        showTopBar = navBackStackEntry?.destination?.route in listOf(
-//                            BottomNavItem.TravelList.route,
-//                            BottomNavItem.CurrentTravelTimetable.route,
-//                            BottomNavItem.Map.route,
-//                            BottomNavItem.Profile.route
-//                        )
+                        showTopBar = navBackStackEntry?.destination?.route in listOf(
+                            BottomNavItem.Profile.route
+
+                        )
                     ) {
                         NavGraph(navController = navController)
                     }

@@ -39,7 +39,8 @@ private val DarkColorPalette = darkColors(
     primaryVariant = DarkJungleGreen,
     background = Color.Black,
     surface = WildBlueYonder,
-    onPrimary = Manatee
+    onPrimary = Manatee,
+    onBackground = WhitePC937
 )
 
 private val LightColorPalette = lightColors(
@@ -47,7 +48,8 @@ private val LightColorPalette = lightColors(
     primaryVariant = DarkJungleGreen,
     background = White,
     surface = WildBlueYonder,
-    onPrimary = Manatee
+    onPrimary = Manatee,
+    onBackground = WhitePC937
 
     /* Other default colors to override
 background = Color.White,

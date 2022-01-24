@@ -5,13 +5,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.R
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import org.student.travelnoteapp.data.remote.models.BottomNavItem
+import org.student.travelnoteapp.presentation.components.BottomNavItem
+import org.student.travelnoteapp.presentation.util.Screen
 
 @Composable
 fun MainScaffold(
@@ -20,12 +26,12 @@ fun MainScaffold(
     bottomNavItems: List<BottomNavItem> = listOf(
         BottomNavItem.TravelList,
         BottomNavItem.CurrentTravelTimetable,
-        BottomNavItem.Map,
         BottomNavItem.Profile
     ),
     topBarTitle: String? = null,
     showTopBar: Boolean = true,
     showBottomBar: Boolean = true,
+    showFloatingActionButton: Boolean = true,
     content: @Composable () -> Unit
 ) {
 
@@ -54,13 +60,6 @@ fun MainScaffold(
                     elevation = 15.dp,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(22.dp)
-                        .graphicsLayer {
-                            shape = RoundedCornerShape(
-                                15.dp
-                            )
-                            clip = true
-                        }
                 ) {
                     BottomNavigation {
                         bottomNavItems.forEachIndexed { _, bottomNavItem ->
@@ -79,6 +78,21 @@ fun MainScaffold(
                     }
                 }
             }
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    navController.navigate(Screen.AddNewTravel.route)
+                },
+                backgroundColor = MaterialTheme.colors.primary,
+                content = {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = null,
+                        tint = MaterialTheme.colors.background
+                    )
+                }
+            )
         },
         modifier = modifier
     ) {
