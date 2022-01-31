@@ -5,6 +5,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -36,11 +38,9 @@ fun TravelListScreen(
             fontSize = MaterialTheme.typography.h4.fontSize
         )
 
-        val travelList = viewModel.getAllTravels.value
+        val travelList by viewModel.getAllTravels.observeAsState()
 
-        if (travelList != null) {
-            TravelList(travelList = travelList, navController)
-        }
+        travelList?.let { TravelList(it, navController) }
 
     }
 }

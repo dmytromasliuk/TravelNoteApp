@@ -37,19 +37,23 @@ import androidx.compose.ui.graphics.LinearGradientShader
 private val DarkColorPalette = darkColors(
     primary = BottleGreen,
     primaryVariant = DarkJungleGreen,
+    secondary = AliceBlue,
     background = Color.Black,
     surface = WildBlueYonder,
     onPrimary = Manatee,
-    onBackground = WhitePC937
+    onBackground = WhitePC937,
+    onSecondary = Charcoal
 )
 
 private val LightColorPalette = lightColors(
     primary = BottleGreen,
     primaryVariant = DarkJungleGreen,
+    secondary = AliceBlue,
     background = White,
     surface = WildBlueYonder,
     onPrimary = Manatee,
-    onBackground = WhitePC937
+    onBackground = Color.Black,
+    onSecondary = Charcoal
 
     /* Other default colors to override
 background = Color.White,

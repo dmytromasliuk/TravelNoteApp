@@ -25,13 +25,13 @@ fun TravelListItem(
     val selectedIndex by remember{ mutableStateOf(-1)}
     Row(
         modifier = Modifier
-            .background(MaterialTheme.colors.onBackground)
+            .background(MaterialTheme.colors.secondary)
             .fillMaxWidth()
             .padding(24.dp)
             .selectable(
                 selected = true,
                 onClick = {
-                    navController.navigate(Screen.TravelDetails.route)
+                    navController.navigate("travel_details_screen/" + travel.id)
                 }
             ),
         verticalAlignment = Alignment.CenterVertically,

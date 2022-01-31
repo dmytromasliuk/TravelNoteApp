@@ -80,19 +80,21 @@ fun MainScaffold(
             }
         },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    navController.navigate(Screen.AddNewTravel.route)
-                },
-                backgroundColor = MaterialTheme.colors.primary,
-                content = {
-                    Icon(
-                        imageVector = Icons.Default.Add,
-                        contentDescription = null,
-                        tint = MaterialTheme.colors.background
-                    )
-                }
-            )
+            if (showFloatingActionButton){
+                FloatingActionButton(
+                    onClick = {
+                        navController.navigate(Screen.AddNewTravel.route)
+                    },
+                    backgroundColor = MaterialTheme.colors.primary,
+                    content = {
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = null,
+                            tint = MaterialTheme.colors.background
+                        )
+                    }
+                )
+            }
         },
         modifier = modifier
     ) {

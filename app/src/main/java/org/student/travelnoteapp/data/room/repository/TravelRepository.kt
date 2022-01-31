@@ -12,6 +12,11 @@ class TravelRepository @Inject constructor(
 ){
 
     val getAllTravels: LiveData<List<Travel>> = travelDao.getAllTravels()
+    val travelList = mutableListOf<Travel>()
+
+    suspend fun getTravelById(id: Int): Travel{
+        return travelDao.getTravelById(id)
+    }
 
     suspend fun addNewTravel(travel: Travel){
         travelDao.addNewTravel(travel)
@@ -19,6 +24,10 @@ class TravelRepository @Inject constructor(
 
     suspend fun updateTravel(travel: Travel){
         travelDao.updateTravel(travel = travel)
+    }
+
+    suspend fun deleteTravelById(id: Int){
+        travelDao.deleteTravelById(id)
     }
 
     suspend fun deleteTravel(travel: Travel){

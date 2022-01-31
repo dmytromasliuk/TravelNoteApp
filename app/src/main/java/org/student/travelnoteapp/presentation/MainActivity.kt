@@ -55,6 +55,9 @@ class MainActivity : ComponentActivity() {
                         showTopBar = navBackStackEntry?.destination?.route in listOf(
                             BottomNavItem.Profile.route
 
+                        ),
+                        showFloatingActionButton = navBackStackEntry?.destination?.route in listOf(
+                            BottomNavItem.TravelList.route
                         )
                     ) {
                         NavGraph(navController = navController)

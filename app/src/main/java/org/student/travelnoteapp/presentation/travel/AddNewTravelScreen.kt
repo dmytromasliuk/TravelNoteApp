@@ -60,7 +60,7 @@ fun AddNewTravelScreen(
                 viewModel.setDescription(it)
             },
             label = {
-                Text(text = "Country")
+                Text(text = "Description")
             },
             modifier = Modifier.padding(5.dp),
             maxLines = 1,
@@ -71,7 +71,7 @@ fun AddNewTravelScreen(
         )
 
 
-        //LogoutButton
+        //AddTravelButton
         Button(
             onClick = {
                 viewModel.addNewTravel()
