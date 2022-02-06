@@ -14,19 +14,19 @@ interface LoginService {
     suspend fun login(loginRequest: LoginRequest): String?
 
     companion object {
-        fun create(): LoginService {
+        fun create(email: String, password: String): LoginService {
             return LoginServiceImpl(
                 client = HttpClient(Android) {
                     install(JsonFeature) {
                         serializer = KotlinxSerializer()
                     }
-//                    install(Auth){
-//                        basic {
-//                            credentials {
-//                                BasicAuthCredentials()
-//                            }
-//                        }
-//                    }
+                    install(Auth){
+                        basic {
+                            credentials {
+                                BasicAuthCredentials(email, password)
+                            }
+                        }
+                    }
                 }
             )
         }

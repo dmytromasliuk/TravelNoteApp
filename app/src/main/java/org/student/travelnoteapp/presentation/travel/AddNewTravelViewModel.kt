@@ -32,7 +32,7 @@ class AddNewTravelViewModel @Inject constructor(
 
     fun addNewTravel(){
         viewModelScope.launch(Dispatchers.IO) {
-            travelRepository.addNewTravel(Travel(0,travelNameText.value, descriptionText.value))
+            travelRepository.addNewTravel(Travel(0,0,travelNameText.value, descriptionText.value))
         }
     }
 

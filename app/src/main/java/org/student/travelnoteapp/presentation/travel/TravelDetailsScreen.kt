@@ -7,6 +7,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -45,8 +46,8 @@ fun TravelDetailsScreen(
                 fontWeight = FontWeight.Bold,
                 fontSize = MaterialTheme.typography.h4.fontSize
             )
-            TravelDetailsItem(tag = "Title:", description = viewModel.getTravelName(id).value)
-            TravelDetailsItem(tag = "Description:", description = viewModel.getTravelDescription(id).value)
+            TravelDetailsItem(tag = "Title:", description = viewModel.getTravel(id).observeAsState().value?.travel?.name.toString())
+            TravelDetailsItem(tag = "Description:", description = viewModel.getTravel(id).observeAsState().value?.travel?.description.toString())
 
             //EditTravelButton
             Button(

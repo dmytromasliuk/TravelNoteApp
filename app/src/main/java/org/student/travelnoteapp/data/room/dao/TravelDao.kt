@@ -1,24 +1,23 @@
 package org.student.travelnoteapp.data.room.dao
 
+import androidx.compose.runtime.MutableState
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 import org.student.travelnoteapp.data.room.model.Ticket
 import org.student.travelnoteapp.data.room.model.Travel
+import org.student.travelnoteapp.data.room.model.relations.TravelWithAllInfo
 
 @Dao
 interface TravelDao {
 
     @Transaction
     @Query("SELECT * FROM travel_table ORDER BY id ASC")
-    fun getAllTravels(): LiveData<List<Travel>>
+    fun getAllTravels(): LiveData<List<TravelWithAllInfo>>
 
     @Transaction
     @Query("SELECT * FROM travel_table WHERE id=:id")
-    suspend fun getTravelById(id: Int): Travel
-
-    @Transaction
-    @Query("SELECT * FROM travel_table ORDER BY id ASC")
-    suspend fun getAllTravelsWithTickets(): List<Travel>
+    fun getTravelById(id: Int): LiveData<TravelWithAllInfo>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addNewTravel(travel: Travel)
@@ -37,7 +36,5 @@ interface TravelDao {
 
     @Query("DELETE FROM travel_table")
     suspend fun deleteAllTravels()
-
-
 
 }

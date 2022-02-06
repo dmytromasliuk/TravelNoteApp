@@ -2,15 +2,16 @@ package org.student.travelnoteapp.data.room.model.relations
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import org.student.travelnoteapp.data.room.model.Ticket
+import org.student.travelnoteapp.data.room.model.Profile
 import org.student.travelnoteapp.data.room.model.Travel
 
-data class TravelAndTicket(
+data class ProfileAndTravel(
     @Embedded
-    val travel: Travel,
+    val profile: Profile,
     @Relation(
+        entity = Travel::class,
         parentColumn = "id",
-        entityColumn = "travelId"
+        entityColumn = "profileId"
     )
-    val tickets: List<Ticket>
+    val travels: List<TravelWithAllInfo>
 )

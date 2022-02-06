@@ -7,6 +7,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -48,10 +50,11 @@ fun TravelEditScreen(
             )
 
             //Travel name
+
             OutlinedTextField(
-                value = viewModel.getTravelName(id).value,
-                onValueChange = {
-                    viewModel.setTravelName(it)
+                value = viewModel.getTravel(id).observeAsState().value?.travel?.name.toString(),
+                onValueChange = { name ->
+                    viewModel.setTravelName(name)
                 },
                 label = {
                     Text(text = "Travel name")
@@ -66,7 +69,7 @@ fun TravelEditScreen(
 
             //Description
             OutlinedTextField(
-                value = viewModel.getTravelDescription(id).value,
+                value = viewModel.getTravel(id).observeAsState().value?.travel?.description.toString(),
                 onValueChange = {
                     viewModel.setDescription(it)
                 },
@@ -87,6 +90,7 @@ fun TravelEditScreen(
                 onClick = {
                     val travel = Travel(
                         id,
+                        0,
                         viewModel.travelNameText.value,
                         viewModel.descriptionText.value
                     )

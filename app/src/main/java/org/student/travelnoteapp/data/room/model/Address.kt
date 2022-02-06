@@ -3,13 +3,13 @@ package org.student.travelnoteapp.data.room.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "profile_table")
-data class Profile(
+@Entity(tableName = "address_table")
+data class Address(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val firstName: String,
-    val lastName: String,
-    val email: String,
-    val phone: String,
+    val apartment: String,
+    val building: String,
+    val street: String,
+    val city: String,
     val country: String
 )

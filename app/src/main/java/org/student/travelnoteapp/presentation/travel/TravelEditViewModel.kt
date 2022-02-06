@@ -2,12 +2,14 @@ package org.student.travelnoteapp.presentation.travel
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.student.travelnoteapp.data.room.model.Travel
+import org.student.travelnoteapp.data.room.model.relations.TravelWithAllInfo
 import org.student.travelnoteapp.data.room.repository.TravelRepository
 import javax.inject.Inject
 
@@ -30,18 +32,8 @@ class TravelEditViewModel @Inject constructor(
         _descriptionText.value = description
     }
 
-    fun getTravelName(id: Int): State<String>{
-        viewModelScope.launch(Dispatchers.Main){
-            _travelNameText.value = travelRepository.getTravelById(id).name
-        }
-        return travelNameText
-    }
-
-    fun getTravelDescription(id: Int): State<String>{
-        viewModelScope.launch(Dispatchers.Main){
-            _descriptionText.value = travelRepository.getTravelById(id).description
-        }
-        return descriptionText
+    fun getTravel(id: Int): LiveData<TravelWithAllInfo> {
+        return travelRepository.getTravelById(id)
     }
 
     fun updateTravel(travel: Travel) {

@@ -15,11 +15,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.student.travelnoteapp.data.room.model.Travel
+import org.student.travelnoteapp.data.room.model.relations.TravelWithAllInfo
 import org.student.travelnoteapp.presentation.util.Screen
 
 @Composable
 fun TravelListItem(
-    travel: Travel,
+    travel: TravelWithAllInfo,
     navController : NavController
 ) {
     val selectedIndex by remember{ mutableStateOf(-1)}
@@ -31,20 +32,20 @@ fun TravelListItem(
             .selectable(
                 selected = true,
                 onClick = {
-                    navController.navigate("travel_details_screen/" + travel.id)
+                    navController.navigate("travel_details_screen/" + travel.travel.id)
                 }
             ),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
-            text = travel.name,
+            text = travel.travel.name,
             color = MaterialTheme.colors.primary,
             fontSize = MaterialTheme.typography.body1.fontSize,
             fontWeight = FontWeight.Bold
         )
         Text(
-            text = travel.description,
+            text = travel.travel.description,
             color = MaterialTheme.colors.primaryVariant,
             fontSize = MaterialTheme.typography.body1.fontSize,
             fontWeight = FontWeight.Normal

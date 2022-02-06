@@ -1,20 +1,22 @@
 package org.student.travelnoteapp.data.room.repository
 
 import android.app.Application
+import androidx.compose.runtime.MutableState
 import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.Flow
 import org.student.travelnoteapp.data.room.TravelDatabase
 import org.student.travelnoteapp.data.room.dao.TravelDao
 import org.student.travelnoteapp.data.room.model.Travel
+import org.student.travelnoteapp.data.room.model.relations.TravelWithAllInfo
 import javax.inject.Inject
 
 class TravelRepository @Inject constructor(
     private val travelDao: TravelDao
 ){
 
-    val getAllTravels: LiveData<List<Travel>> = travelDao.getAllTravels()
-    val travelList = mutableListOf<Travel>()
+    val getAllTravels: LiveData<List<TravelWithAllInfo>> = travelDao.getAllTravels()
 
-    suspend fun getTravelById(id: Int): Travel{
+    fun getTravelById(id: Int): LiveData<TravelWithAllInfo>{
         return travelDao.getTravelById(id)
     }
 

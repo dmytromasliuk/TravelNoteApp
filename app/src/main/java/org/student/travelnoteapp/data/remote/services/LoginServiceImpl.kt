@@ -14,7 +14,7 @@ class LoginServiceImpl(
     override suspend fun login(loginRequest: LoginRequest): String? {
         return try {
             client.post<String>{
-                url(HttpRoutes.REGISTRATION)
+                url(HttpRoutes.LOGIN)
                 contentType(ContentType.Application.Json)
                 body = loginRequest
             }
