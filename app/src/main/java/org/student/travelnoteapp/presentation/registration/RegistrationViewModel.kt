@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.student.travelnoteapp.data.remote.models.requests.RegistrationRequest
 import org.student.travelnoteapp.data.remote.services.RegistrationService
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -48,10 +49,10 @@ class RegistrationViewModel @Inject constructor() : ViewModel() {
     fun register() {
         viewModelScope.launch(Dispatchers.Main) {
             val request = RegistrationRequest(
-                firstNameText.toString(),
-                lastNameText.toString(),
-                emailText.toString(),
-                passwordText.toString()
+                _firstNameText.value,
+                _lastNameText.value,
+                _emailText.value,
+                _passwordText.value
             )
             service.register(request)
         }

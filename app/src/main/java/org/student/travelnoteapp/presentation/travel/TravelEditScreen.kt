@@ -1,5 +1,6 @@
 package org.student.travelnoteapp.presentation.travel
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
@@ -7,7 +8,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +24,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.student.travelnoteapp.data.room.model.Travel
 import org.student.travelnoteapp.presentation.util.Screen
+import timber.log.Timber
 
 @Composable
 fun TravelEditScreen(
@@ -28,6 +32,9 @@ fun TravelEditScreen(
     viewModel: TravelEditViewModel = hiltViewModel(),
     id: Int
 ) {
+
+    Timber.d("Id value in composable${id}")
+    viewModel.setViewModelTravelId(id)
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -50,11 +57,15 @@ fun TravelEditScreen(
             )
 
             //Travel name
-
+            val travel = viewModel.getTravel(id).observeAsState().value?.travel
+            val travelName by remember { mutableStateOf(travel?.name) }
+            val travelDescription by remember { mutableStateOf(travel?.description) }
+            val tn = viewModel.travelNameText.observeAsState(viewModel.getTravel(id).value?.travel?.name)
+            Timber.d("Value in tn - $tn")
             OutlinedTextField(
-                value = viewModel.getTravel(id).observeAsState().value?.travel?.name.toString(),
+                value = tn.value.toString(),
                 onValueChange = { name ->
-                    viewModel.setTravelName(name)
+                    viewModel.setTravelName(name.trimStart { it == '0' })
                 },
                 label = {
                     Text(text = "Travel name")
@@ -68,8 +79,9 @@ fun TravelEditScreen(
             )
 
             //Description
+            val td = viewModel.descriptionText.observeAsState(viewModel.getTravel(id).value?.travel?.description)
             OutlinedTextField(
-                value = viewModel.getTravel(id).observeAsState().value?.travel?.description.toString(),
+                value = td.value.toString(),
                 onValueChange = {
                     viewModel.setDescription(it)
                 },
@@ -91,8 +103,8 @@ fun TravelEditScreen(
                     val travel = Travel(
                         id,
                         0,
-                        viewModel.travelNameText.value,
-                        viewModel.descriptionText.value
+                        tn.value!!,
+                        td.value!!
                     )
                     viewModel.updateTravel(travel = travel)
                     navController.navigate(Screen.TravelList.route){
@@ -118,7 +130,8 @@ fun TravelEditScreen(
             Button(
                 onClick = {
                     viewModel.deleteTravel(id)
-                    navController.navigate(Screen.TravelList.route){
+                    navController.navigate(Screen.TravelList.route)
+                    {
                         popUpTo(Screen.TravelList.route){
                             inclusive = true
                         }

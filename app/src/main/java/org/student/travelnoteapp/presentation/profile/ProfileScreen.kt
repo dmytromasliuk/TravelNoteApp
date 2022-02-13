@@ -15,6 +15,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -30,176 +31,199 @@ fun ProfileScreen (
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
     ) {
 
-        Text(
-            modifier = Modifier.padding(bottom = 25.dp),
-            text = "Profile",
-            color = MaterialTheme.colors.primary,
-            fontWeight = FontWeight.Bold,
-            fontSize = MaterialTheme.typography.h4.fontSize
-        )
-
-        //FirstNameTextField
-        OutlinedTextField(
-            value = viewModel.firstNameText.value,
-            onValueChange = {
-                viewModel.setFirstNameText(it)
-            },
-            label = {
-                Text(text = "First name")
-            },
-            leadingIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        imageVector = Icons.Filled.Person,
-                        contentDescription = "First name icon")
-                }
-            },
-            modifier = Modifier.padding(5.dp),
-            maxLines = 1,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Done
-            )
-        )
-
-        //LastNameTextField
-        OutlinedTextField(
-            value = viewModel.lastNameText.value,
-            onValueChange = {
-                viewModel.setLastNameText(it)
-            },
-            label = {
-                Text(text = "Last name")
-            },
-            leadingIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        imageVector = Icons.Filled.Person,
-                        contentDescription = "Last name icon")
-                }
-            },
-            modifier = Modifier.padding(5.dp),
-            maxLines = 1,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Done
-            )
-        )
-
-        //EmailTextField
-        OutlinedTextField(
-            value = viewModel.emailText.value,
-            onValueChange = {
-                viewModel.setEmailText(it)
-            },
-            label = {
-                Text(text = "Email")
-            },
-            leadingIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        imageVector = Icons.Filled.Email,
-                        contentDescription = "Email icon")
-                }
-            },
-            modifier = Modifier.padding(5.dp),
-            maxLines = 1,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Done
-            )
-        )
-
-        //phoneTextField
-        OutlinedTextField(
-            value = viewModel.phoneText.value,
-            onValueChange = {
-                viewModel.setPhoneText(it)
-            },
-            label = {
-                Text(text = "Phone")
-            },
-            leadingIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        imageVector = Icons.Filled.Phone,
-                        contentDescription = "Phone icon")
-                }
-            },
-            trailingIcon = {
-                IconButton(onClick = {
-
-                }) {
-                    Icon(
-                        imageVector = Icons.Filled.Edit,
-                        contentDescription = "Edit icon")
-                }
-            },
-            modifier = Modifier.padding(5.dp),
-            maxLines = 1,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Done
-            )
-        )
-
-        //CountryTextField
-        OutlinedTextField(
-            value = viewModel.countryText.value,
-            onValueChange = {
-                viewModel.setCountryText(it)
-            },
-            label = {
-                Text(text = "Country")
-            },
-            leadingIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        imageVector = Icons.Filled.Place,
-                        contentDescription = "Location icon")
-                }
-            },
-            trailingIcon = {
-                IconButton(onClick = {
-
-                }) {
-                    Icon(
-                        imageVector = Icons.Filled.Edit,
-                        contentDescription = "Edit icon")
-                }
-            },
-            modifier = Modifier.padding(5.dp),
-            maxLines = 1,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Done
-            )
-        )
-
-        //LogoutButton
-        Button(
-            onClick = {
-
-                navController.navigate(Screen.Login.route){
-                    popUpTo(Screen.Login.route){
-                        inclusive = true
-                    }
-                }
-            },
-            modifier = Modifier
-                .padding(10.dp)
-                .size(150.dp, 40.dp)
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .height(55.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = "Logout",
-                color = MaterialTheme.colors.secondary,
-                fontWeight = FontWeight.Bold,
-                fontSize = MaterialTheme.typography.button.fontSize
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(55.dp)
+                    .background(MaterialTheme.colors.primary),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Profile",
+                    color = MaterialTheme.colors.background,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(start = 15.dp)
+                )
+            }
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 75.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            //FirstNameTextField
+            OutlinedTextField(
+                value = viewModel.firstNameText.value,
+                onValueChange = {
+                    viewModel.setFirstNameText(it)
+                },
+                label = {
+                    Text(text = "First name")
+                },
+                leadingIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            imageVector = Icons.Filled.Person,
+                            contentDescription = "First name icon")
+                    }
+                },
+                modifier = Modifier.padding(5.dp),
+                maxLines = 1,
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done
+                )
             )
 
+            //LastNameTextField
+            OutlinedTextField(
+                value = viewModel.lastNameText.value,
+                onValueChange = {
+                    viewModel.setLastNameText(it)
+                },
+                label = {
+                    Text(text = "Last name")
+                },
+                leadingIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            imageVector = Icons.Filled.Person,
+                            contentDescription = "Last name icon")
+                    }
+                },
+                modifier = Modifier.padding(5.dp),
+                maxLines = 1,
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done
+                )
+            )
+
+            //EmailTextField
+            OutlinedTextField(
+                value = viewModel.emailText.value,
+                onValueChange = {
+                    viewModel.setEmailText(it)
+                },
+                label = {
+                    Text(text = "Email")
+                },
+                leadingIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            imageVector = Icons.Filled.Email,
+                            contentDescription = "Email icon")
+                    }
+                },
+                modifier = Modifier.padding(5.dp),
+                maxLines = 1,
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done
+                )
+            )
+
+            //phoneTextField
+            OutlinedTextField(
+                value = viewModel.phoneText.value,
+                onValueChange = {
+                    viewModel.setPhoneText(it)
+                },
+                label = {
+                    Text(text = "Phone")
+                },
+                leadingIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            imageVector = Icons.Filled.Phone,
+                            contentDescription = "Phone icon")
+                    }
+                },
+                trailingIcon = {
+                    IconButton(onClick = {
+
+                    }) {
+                        Icon(
+                            imageVector = Icons.Filled.Edit,
+                            contentDescription = "Edit icon")
+                    }
+                },
+                modifier = Modifier.padding(5.dp),
+                maxLines = 1,
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done
+                )
+            )
+
+            //CountryTextField
+            OutlinedTextField(
+                value = viewModel.countryText.value,
+                onValueChange = {
+                    viewModel.setCountryText(it)
+                },
+                label = {
+                    Text(text = "Country")
+                },
+                leadingIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            imageVector = Icons.Filled.Place,
+                            contentDescription = "Location icon")
+                    }
+                },
+                trailingIcon = {
+                    IconButton(onClick = {
+
+                    }) {
+                        Icon(
+                            imageVector = Icons.Filled.Edit,
+                            contentDescription = "Edit icon")
+                    }
+                },
+                modifier = Modifier.padding(5.dp),
+                maxLines = 1,
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done
+                )
+            )
+
+            //LogoutButton
+            Button(
+                onClick = {
+
+                    navController.navigate(Screen.Login.route){
+                        popUpTo(Screen.Login.route){
+                            inclusive = true
+                        }
+                    }
+                },
+                modifier = Modifier
+                    .padding(10.dp)
+                    .size(150.dp, 40.dp)
+            ) {
+                Text(
+                    text = "Logout",
+                    color = MaterialTheme.colors.secondary,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = MaterialTheme.typography.button.fontSize
+                )
+
+            }
         }
     }
 }

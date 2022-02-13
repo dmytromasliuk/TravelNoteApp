@@ -1,19 +1,23 @@
 package org.student.travelnoteapp.presentation.travel
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import org.student.travelnoteapp.presentation.util.Screen
 
 @Composable
 fun CurrentTravelTimetableScreen(
@@ -23,16 +27,31 @@ fun CurrentTravelTimetableScreen(
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
     ) {
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .height(55.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(55.dp)
+                    .background(MaterialTheme.colors.primary),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Current travel timetable",
+                    color = MaterialTheme.colors.background,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(start = 15.dp)
+                )
+            }
+        }
 
-        Text(
-            modifier = Modifier.padding(bottom = 25.dp),
-            text = "Current travel timetable",
-            color = MaterialTheme.colors.primary,
-            fontWeight = FontWeight.Bold,
-            fontSize = MaterialTheme.typography.h4.fontSize
-        )
     }
 }
 

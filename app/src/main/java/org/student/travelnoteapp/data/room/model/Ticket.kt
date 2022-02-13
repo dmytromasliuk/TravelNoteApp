@@ -16,5 +16,5 @@ data class Ticket(
     val vehicle: String,
     val price: String,
     val date: String,
-    val time: Long
+    val time: String
 )

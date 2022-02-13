@@ -26,9 +26,6 @@ import org.student.travelnoteapp.presentation.util.Screen
 class MainActivity : ComponentActivity() {
 
     private lateinit var navController: NavHostController
-    private val service by lazy {
-        RegistrationService.create()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,19 +43,18 @@ class MainActivity : ComponentActivity() {
                     MainScaffold(
                         modifier = Modifier.fillMaxSize(),
                         navController = navController,
-
                         showBottomBar = navBackStackEntry?.destination?.route in listOf(
                             BottomNavItem.TravelList.route,
                             BottomNavItem.CurrentTravelTimetable.route,
-                            BottomNavItem.Profile.route
+                            BottomNavItem.Profile.route,
+                            Screen.TravelEdit.route,
+                            Screen.TravelDetails.route
                         ),
-                        showTopBar = navBackStackEntry?.destination?.route in listOf(
-                            BottomNavItem.Profile.route
-
-                        ),
+                        showTopBar = false,
                         showFloatingActionButton = navBackStackEntry?.destination?.route in listOf(
                             BottomNavItem.TravelList.route
-                        )
+                        ),
+
                     ) {
                         NavGraph(navController = navController)
                     }

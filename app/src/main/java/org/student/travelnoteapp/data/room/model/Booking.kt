@@ -11,5 +11,6 @@ data class Booking(
     val addressId: Int,
     val title: String,
     val email: String,
-    val phone: String
+    val phone: String,
+    val price: String
 )

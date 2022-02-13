@@ -26,6 +26,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.student.travelnoteapp.R
 import org.student.travelnoteapp.presentation.util.Screen
+import timber.log.Timber
 
 @Composable
 fun LoginScreen(
@@ -117,6 +118,13 @@ fun LoginScreen(
         //SignInButton
         Button(
             onClick = {
+//                viewModel.login()
+//                if (viewModel.getProfileResponse() == null){
+//                    Timber.d("Login denied...")
+//                } else {
+//                    Timber.d("Login success!!!")
+//                    navController.navigate(route = Screen.TravelList.route)
+//                }
                 navController.navigate(route = Screen.TravelList.route)
             },
             modifier = Modifier

@@ -1,8 +1,10 @@
 package org.student.travelnoteapp.presentation.travel
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,6 +13,7 @@ import kotlinx.coroutines.launch
 import org.student.travelnoteapp.data.room.model.Travel
 import org.student.travelnoteapp.data.room.model.relations.TravelWithAllInfo
 import org.student.travelnoteapp.data.room.repository.TravelRepository
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,11 +21,35 @@ class TravelEditViewModel @Inject constructor(
     private val travelRepository: TravelRepository
 ): ViewModel() {
 
-    private val _travelNameText = mutableStateOf("")
-    val travelNameText : State<String> = _travelNameText
+    private var _id: Int = 0
 
-    private val _descriptionText = mutableStateOf("")
-    val descriptionText : State<String> = _descriptionText
+    private val _travelNameText: MutableLiveData<String> = MutableLiveData("")
+    val travelNameText : MutableLiveData<String> = _travelNameText
+
+    private val _descriptionText: MutableLiveData<String> = MutableLiveData("")
+    val descriptionText : MutableLiveData<String> = _descriptionText
+
+    var tmp: String? = ""
+
+    //TODO: WTF???!!!
+    init{
+        viewModelScope.launch(Dispatchers.Main) {
+            Timber.d("Id value in viewmodel ${_id}")
+            val testTravel = travelRepository.getTravelById(_id)
+            Timber.d( "Try to catch travel name: ${testTravel.value?.travel?.name.toString()}")
+
+
+            Timber.d( "tmp value in viewmodel ${travelRepository.getTravelById(5).value?.travel?.name}")
+            setTravelName(travelRepository.getTravelById(_id).value?.travel?.name.toString())
+            Timber.d( "travelName value in viewmodel ${_travelNameText.value}")
+            setDescription(travelRepository.getTravelById(_id).value?.travel?.description.toString())
+            Timber.d("description in viewmodel ${_descriptionText.value}")
+        }
+    }
+
+    fun setViewModelTravelId(id: Int){
+         _id = id
+    }
 
     fun setTravelName(travelName: String){
         _travelNameText.value = travelName
