@@ -1,5 +1,6 @@
 package org.student.travelnoteapp.presentation.place
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -27,6 +29,8 @@ fun AddPlaceScreen(
     navController: NavController,
     viewModel: AddPlaceViewModel = hiltViewModel()
 ) {
+
+    val context = LocalContext.current
 
     Column(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier
@@ -67,7 +71,7 @@ fun AddPlaceScreen(
 
         Column(
             modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.Start,
+            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
 
@@ -104,8 +108,8 @@ fun AddPlaceScreen(
                 },
                 modifier = Modifier
                     .padding(5.dp)
-
-                    .fillMaxSize(),
+                    .fillMaxWidth()
+                    .height(150.dp),
                 maxLines = 10,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Text,
@@ -113,6 +117,55 @@ fun AddPlaceScreen(
                 )
             )
 
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ){
+                //DateTextField
+                val customTextFieldWidth = 170.dp
+                OutlinedTextField(
+                    value = viewModel.date.value,
+                    onValueChange = {
+                        viewModel.setDate(it)
+                    },
+                    label = {
+                        Text(text = "Date")
+                    },
+                    trailingIcon = {
+                        Icon(
+                            imageVector = Icons.Default.Today,
+                            contentDescription = "Date icon",
+                            modifier = Modifier.clickable { viewModel.selectDate(context) }
+                        )
+                    },
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .width(customTextFieldWidth)
+
+                )
+
+                //TimeTextField
+                OutlinedTextField(
+                    value = viewModel.time.value,
+                    onValueChange = {
+                        viewModel.setTime(it)
+                    },
+                    label = {
+                        Text(text = "Time")
+                    },
+                    trailingIcon = {
+                        Icon(
+                            imageVector = Icons.Default.AccessTime,
+                            contentDescription = "Time icon",
+                            modifier = Modifier.clickable { viewModel.selectTime(context) }
+                        )
+                    },
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .width(customTextFieldWidth)
+
+                )
+            }
         }
     }
 

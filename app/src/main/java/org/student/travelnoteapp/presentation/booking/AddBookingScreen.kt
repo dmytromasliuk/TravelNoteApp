@@ -82,7 +82,9 @@ fun AddBookingScreen(
                 label = {
                     Text(text = "Title")
                 },
-                modifier = Modifier.padding(5.dp),
+                modifier = Modifier
+                    .padding(5.dp)
+                    .fillMaxWidth(),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Text,
@@ -90,7 +92,116 @@ fun AddBookingScreen(
                 )
             )
 
-            //Destination From
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ){
+                val customTextFieldWidth = 180.dp
+
+                //Country
+                OutlinedTextField(
+                    value = viewModel.country.value,
+                    onValueChange = {
+                        viewModel.setCountry(it)
+                    },
+                    label = {
+                        Text(text = "Country")
+                    },
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .width(customTextFieldWidth),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Done
+                    )
+                )
+
+                //City
+                OutlinedTextField(
+                    value = viewModel.city.value,
+                    onValueChange = {
+                        viewModel.setCity(it)
+                    },
+                    label = {
+                        Text(text = "City")
+                    },
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .width(customTextFieldWidth),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Done
+                    )
+                )
+            }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ){
+                val buildingAndApartmentTextFieldWidth = 85.dp
+
+                //Street
+                OutlinedTextField(
+                    value = viewModel.street.value,
+                    onValueChange = {
+                        viewModel.setStreet(it)
+                    },
+                    label = {
+                        Text(text = "Street")
+                    },
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .width(180.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Done
+                    )
+                )
+
+                //Building
+                OutlinedTextField(
+                    value = viewModel.building.value,
+                    onValueChange = {
+                        viewModel.setBuilding(it)
+                    },
+                    label = {
+                        Text(text = "bldg.")
+                    },
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .width(buildingAndApartmentTextFieldWidth),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Done
+                    )
+                )
+
+                //Apartment
+                OutlinedTextField(
+                    value = viewModel.apartment.value,
+                    onValueChange = {
+                        viewModel.setApartment(it)
+                    },
+                    label = {
+                        Text(text = "apt.")
+                    },
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .width(buildingAndApartmentTextFieldWidth),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Done
+                    )
+                )
+
+            }
+
+            //Email
             OutlinedTextField(
                 value = viewModel.email.value,
                 onValueChange = {
@@ -99,7 +210,9 @@ fun AddBookingScreen(
                 label = {
                     Text(text = "Email")
                 },
-                modifier = Modifier.padding(5.dp),
+                modifier = Modifier
+                    .padding(5.dp)
+                    .fillMaxWidth(),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Text,
@@ -107,16 +220,18 @@ fun AddBookingScreen(
                 )
             )
 
-            //Destination To
+            //Phone
             OutlinedTextField(
                 value = viewModel.phone.value,
                 onValueChange = {
                     viewModel.setPhone(it)
                 },
                 label = {
-                    Text(text = "phone")
+                    Text(text = "Phone")
                 },
-                modifier = Modifier.padding(5.dp),
+                modifier = Modifier
+                    .padding(5.dp)
+                    .fillMaxWidth(),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Text,
@@ -136,7 +251,9 @@ fun AddBookingScreen(
                 trailingIcon = {
                     Text(text = "zl")
                 },
-                modifier = Modifier.padding(5.dp),
+                modifier = Modifier
+                    .padding(5.dp)
+                    .fillMaxWidth(),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Text,

@@ -22,6 +22,21 @@ class AddBookingViewModel @Inject constructor(
     private val _price = mutableStateOf("")
     val price: State<String> = _price
 
+    private val _country = mutableStateOf("")
+    val country: State<String> = _country
+
+    private val _city = mutableStateOf("")
+    val city: State<String> = _city
+
+    private val _street = mutableStateOf("")
+    val street: State<String> = _street
+
+    private val _building = mutableStateOf("")
+    val building: State<String> = _building
+
+    private val _apartment = mutableStateOf("")
+    val apartment: State<String> = _apartment
+
     fun setTitle(title: String){
         _title.value = title
     }
@@ -36,5 +51,25 @@ class AddBookingViewModel @Inject constructor(
 
     fun setPrice(price: String){
         _price.value = price
+    }
+
+    fun setCountry(country: String){
+        _country.value = country
+    }
+
+    fun setCity(city: String){
+        _city.value = city
+    }
+
+    fun setStreet(street: String){
+        _street.value = street
+    }
+
+    fun setBuilding(building: String){
+        _building.value = building
+    }
+
+    fun setApartment(apartment: String){
+        _apartment.value = apartment
     }
 }
