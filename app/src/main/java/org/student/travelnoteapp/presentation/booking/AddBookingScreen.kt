@@ -8,6 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
@@ -20,13 +21,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavController
 import org.student.travelnoteapp.presentation.util.Screen
 
 @Composable
 fun AddBookingScreen(
     navController: NavController,
-    viewModel: AddBookingViewModel = hiltViewModel()
+    viewModel: AddBookingViewModel = hiltViewModel(),
+    travelId: Long
 ) {
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -54,7 +57,8 @@ fun AddBookingScreen(
                 )
                 IconButton(
                     onClick = {
-                        //navController.navigate("travel_edit_screen/$id")
+                        viewModel.addBooking(travelId)
+                        navController.navigate("travel_details_screen/$travelId")
                     },
                     modifier = Modifier.padding(end = 15.dp)
                 ) {

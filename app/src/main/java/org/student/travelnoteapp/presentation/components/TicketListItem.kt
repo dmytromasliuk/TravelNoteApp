@@ -1,13 +1,14 @@
 package org.student.travelnoteapp.presentation.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.ArrowRightAlt
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,9 +29,9 @@ fun TicketListItem(
     val selectedIndex by remember{ mutableStateOf(-1) }
     Row(
         modifier = Modifier
-            .background(MaterialTheme.colors.secondary)
+            .background(MaterialTheme.colors.secondaryVariant)
             .fillMaxWidth()
-            .padding(24.dp)
+            .padding(15.dp)
             .selectable(
                 selected = true,
                 onClick = {
@@ -40,30 +41,34 @@ fun TicketListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        Text(
-            text = ticket?.destinationFrom.toString(),
-            color = MaterialTheme.colors.primaryVariant,
-            fontSize = MaterialTheme.typography.body1.fontSize,
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            text = " => ",
-            color = MaterialTheme.colors.primaryVariant,
-            fontSize = MaterialTheme.typography.body1.fontSize,
-            fontWeight = FontWeight.Normal
-        )
-        Text(
-            text = ticket?.destinationTo.toString(),
-            color = MaterialTheme.colors.primaryVariant,
-            fontSize = MaterialTheme.typography.body1.fontSize,
-            fontWeight = FontWeight.Normal
-        )
-        Text(
-            text = ticket?.destinationTo.toString(),
-            color = MaterialTheme.colors.primaryVariant,
-            fontSize = MaterialTheme.typography.body1.fontSize,
-            fontWeight = FontWeight.Normal
-        )
+        Column {
+            Row {
+                Text(
+                    text = ticket?.destinationFrom.toString(),
+                    color = MaterialTheme.colors.primaryVariant,
+                    fontSize = MaterialTheme.typography.body1.fontSize,
+                    fontWeight = FontWeight.Normal
+                )
+                Icon(
+                    imageVector = Icons.Default.ArrowRightAlt,
+                    contentDescription = "Destination Icon"
+                )
+                Text(
+                    text = ticket?.destinationTo.toString(),
+                    color = MaterialTheme.colors.primaryVariant,
+                    fontSize = MaterialTheme.typography.body1.fontSize,
+                    fontWeight = FontWeight.Normal
+                )
+            }
+        }
+        Column {
+            Text(
+                text = ticket?.time.toString(),
+                color = MaterialTheme.colors.primaryVariant,
+                fontSize = MaterialTheme.typography.body1.fontSize,
+                fontWeight = FontWeight.Normal
+            )
+        }
     }
 
 }

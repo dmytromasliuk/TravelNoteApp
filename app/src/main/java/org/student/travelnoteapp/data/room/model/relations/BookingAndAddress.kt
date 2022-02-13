@@ -13,5 +13,5 @@ data class BookingAndAddress(
         parentColumn = "addressId",
         entityColumn = "id"
     )
-    val address: Address
+    val address: Address?
 )

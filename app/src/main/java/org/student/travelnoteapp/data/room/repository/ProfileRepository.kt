@@ -10,7 +10,7 @@ class ProfileRepository @Inject constructor(
     private val profileDao: ProfileDao
 ) {
 
-    fun getProfileById(id: Int): LiveData<ProfileAndTravel>{
+    fun getProfileById(id: Long): LiveData<ProfileAndTravel>{
         return profileDao.getProfileById(id)
     }
 

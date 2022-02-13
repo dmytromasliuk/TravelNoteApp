@@ -6,11 +6,18 @@ import android.content.Context
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.student.travelnoteapp.data.room.model.Ticket
+import org.student.travelnoteapp.data.room.repository.TicketRepository
 import java.util.*
 import javax.inject.Inject
 
+@HiltViewModel
 class AddTicketViewModel @Inject constructor(
-    //private val travelRepository: TravelRepository
+    private val ticketRepository: TicketRepository
 ): ViewModel() {
 
     private val _ticketNumber = mutableStateOf("")
@@ -71,13 +78,19 @@ class AddTicketViewModel @Inject constructor(
         DatePickerDialog(context, { _, y, m, d ->
             val pickedTime = Calendar.getInstance()
             pickedTime.set(y, m, d, 0, 0)
+            val dStr: String
+            if ((d + 1).toString().length == 1) {
+                dStr = "0${d}"
+            } else {
+                dStr = d.toString()
+            }
             val mStr: String
             if ((m + 1).toString().length == 1) {
                 mStr = "0${m + 1}"
             } else {
                 mStr = m.toString()
             }
-            date = "$d/$mStr/$y"
+            date = "$dStr/$mStr/$y"
             setDate(date)
         }, year, month, day).show()
     }
@@ -90,9 +103,39 @@ class AddTicketViewModel @Inject constructor(
         TimePickerDialog(context, {_, h, m ->
             val pickedTime = Calendar.getInstance()
             pickedTime.set(0,0,0, h, m)
-            time = "$h:$m"
+            val hStr: String
+            if ((h + 1).toString().length == 1) {
+                hStr = "0${h}"
+            } else {
+                hStr = h.toString()
+            }
+            val mStr: String
+            if ((m + 1).toString().length == 1) {
+                mStr = "0${m}"
+            } else {
+                mStr = m.toString()
+            }
+            time = "$hStr:$mStr"
             setTime(time)
         }, hour, minutes, true).show()
+    }
+
+    fun addTicket(travelId: Long){
+        viewModelScope.launch(Dispatchers.IO) {
+            ticketRepository.addNewTicket(
+                Ticket(
+                    0,
+                    travelId,
+                    _ticketNumber.value,
+                    _destinationFrom.value,
+                    _destinationTo.value,
+                    _selectedVehicle.value,
+                    _price.value,
+                    _date.value,
+                    _time.value
+                )
+            )
+        }
     }
 
 }

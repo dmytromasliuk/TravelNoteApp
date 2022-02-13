@@ -8,7 +8,7 @@ import androidx.navigation.NavController
 fun BookingEditScreen(
     navController: NavController,
     viewModel: BookingDetailsViewModel = hiltViewModel(),
-    id: Int
+    id: Long
 ) {
 
 }

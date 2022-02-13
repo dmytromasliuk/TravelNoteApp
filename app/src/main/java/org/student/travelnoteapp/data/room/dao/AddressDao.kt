@@ -16,6 +16,10 @@ interface AddressDao {
     @Query("SELECT * FROM address_table WHERE id=:id")
     fun getAddressById(id: Int): LiveData<Address>
 
+    @Transaction
+    @Query("SELECT * FROM address_table ORDER BY id DESC LIMIT 1")
+    fun getLastAddress(): LiveData<Address>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addNewAddress(address: Address)
 
@@ -26,7 +30,7 @@ interface AddressDao {
     suspend fun deleteAddress(address: Address)
 
     @Query("DELETE FROM address_table WHERE id=:id")
-    suspend fun deleteAddressById(id: Int)
+    suspend fun deleteAddressById(id: Long)
 
     @Query("DELETE FROM address_table")
     suspend fun deleteAllAddresses()

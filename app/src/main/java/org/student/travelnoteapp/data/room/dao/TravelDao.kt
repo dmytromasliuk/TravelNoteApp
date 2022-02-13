@@ -17,7 +17,7 @@ interface TravelDao {
 
     @Transaction
     @Query("SELECT * FROM travel_table WHERE id=:id")
-    fun getTravelById(id: Int): LiveData<TravelWithAllInfo>
+    fun getTravelById(id: Long): LiveData<TravelWithAllInfo>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addNewTravel(travel: Travel)
@@ -32,7 +32,7 @@ interface TravelDao {
     suspend fun deleteTravel(travel: Travel)
 
     @Query("DELETE FROM travel_table WHERE id=:id")
-    suspend fun deleteTravelById(id: Int)
+    suspend fun deleteTravelById(id: Long)
 
     @Query("DELETE FROM travel_table")
     suspend fun deleteAllTravels()

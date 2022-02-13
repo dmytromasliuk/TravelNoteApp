@@ -49,6 +49,7 @@ private val LightColorPalette = lightColors(
     primary = BottleGreen,
     primaryVariant = DarkJungleGreen,
     secondary = AliceBlue,
+    secondaryVariant = WhitePC937,
     background = White,
     surface = WildBlueYonder,
     onPrimary = Manatee,

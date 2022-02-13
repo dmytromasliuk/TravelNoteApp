@@ -27,7 +27,8 @@ import androidx.navigation.NavController
 @Composable
 fun AddPlaceScreen(
     navController: NavController,
-    viewModel: AddPlaceViewModel = hiltViewModel()
+    viewModel: AddPlaceViewModel = hiltViewModel(),
+    travelId: Long
 ) {
 
     val context = LocalContext.current
@@ -56,7 +57,8 @@ fun AddPlaceScreen(
                 )
                 IconButton(
                     onClick = {
-                        //navController.navigate("travel_edit_screen/$id")
+                        viewModel.addPlace(travelId)
+                        navController.navigate("travel_details_screen/$travelId")
                     },
                     modifier = Modifier.padding(end = 15.dp)
                 ) {

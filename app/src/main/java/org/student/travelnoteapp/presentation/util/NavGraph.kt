@@ -2,6 +2,7 @@ package org.student.travelnoteapp.presentation.util
 
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavArgument
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -59,13 +60,13 @@ fun NavGraph(
         composable(
             route = Screen.TravelDetails.route,
             arguments = listOf(navArgument("id"){
-                type = NavType.IntType
+                type = NavType.LongType
             })
         ){
             it.arguments?.let { screen ->
                 TravelDetailsScreen(
                     navController = navController,
-                    id = screen.getInt("id")
+                    id = screen.getLong("id")
                 )
             }
         }
@@ -77,99 +78,126 @@ fun NavGraph(
         composable(
             route = Screen.TravelEdit.route,
             arguments = listOf(navArgument("id"){
-                type = NavType.IntType
+                type = NavType.LongType
             })
         ){
             it.arguments?.let { screen ->
-                TravelEditScreen(navController = navController,
-                id = screen.getInt("id")
+                TravelEditScreen(
+                    navController = navController,
+                    id = screen.getLong("id")
                 )
             }
         }
         composable(
             route = Screen.TicketDetails.route,
             arguments = listOf(navArgument("id"){
-                type = NavType.IntType
+                type = NavType.LongType
             })
         ){
             it.arguments?.let { screen ->
                 TicketDetailsScreen(navController = navController,
-                    id = screen.getInt("id")
+                    id = screen.getLong("id")
                 )
             }
         }
         composable(
-            route = Screen.AddTicket.route
+            route = Screen.AddTicket.route,
+            arguments = listOf(navArgument("travelId"){
+                type = NavType.LongType
+            })
         ){
-            AddTicketScreen(navController = navController)
+            it.arguments?.let { screen ->
+                AddTicketScreen(
+                    navController = navController,
+                    travelId = screen.getLong("travelId")
+                )
+            }
         }
         composable(
             route = Screen.TicketEdit.route,
             arguments = listOf(navArgument("id"){
-                type = NavType.IntType
+                type = NavType.LongType
             })
         ){
             it.arguments?.let { screen ->
                 TicketEditScreen(navController = navController,
-                    id = screen.getInt("id")
+                    id = screen.getLong("id")
                 )
             }
         }
         composable(
             route = Screen.BookingDetails.route,
             arguments = listOf(navArgument("id"){
-                type = NavType.IntType
+                type = NavType.LongType
             })
         ){
             it.arguments?.let { screen ->
                 BookingDetailsScreen(navController = navController,
-                    id = screen.getInt("id")
+                    travelId = screen.getLong("id")
                 )
             }
         }
         composable(
-            route = Screen.AddBooking.route
+            route = Screen.AddBooking.route,
+            arguments = listOf(navArgument("travelId"){
+                type = NavType.LongType
+            })
         ){
-            AddBookingScreen(navController = navController)
+            it.arguments?.let { screen ->
+                AddBookingScreen(
+                    navController = navController,
+                    travelId = screen.getLong("travelId")
+                )
+            }
         }
         composable(
             route = Screen.BookingEdit.route,
             arguments = listOf(navArgument("id"){
-                type = NavType.IntType
+                type = NavType.LongType
             })
         ){
             it.arguments?.let { screen ->
-                BookingEditScreen(navController = navController,
-                    id = screen.getInt("id")
+                BookingEditScreen(
+                    navController = navController,
+                    id = screen.getLong("id")
                 )
             }
         }
         composable(
             route = Screen.PlaceDetails.route,
             arguments = listOf(navArgument("id"){
-                type = NavType.IntType
+                type = NavType.LongType
             })
         ){
             it.arguments?.let { screen ->
-                PlaceDetailsScreen(navController = navController,
-                    id = screen.getInt("id")
+                PlaceDetailsScreen(
+                    navController = navController,
+                    id = screen.getLong("id")
                 )
             }
         }
         composable(
-            route = Screen.AddPlace.route
+            route = Screen.AddPlace.route,
+            arguments = listOf(navArgument("travelId"){
+                type = NavType.LongType
+            })
         ){
-            AddPlaceScreen(navController = navController)
+            it.arguments?.let { screen ->
+                AddPlaceScreen(
+                    navController = navController,
+                    travelId = screen.getLong("travelId")
+                )
+            }
         }
         composable(
             route = Screen.PlaceEdit.route,
             arguments = listOf(navArgument("id"){
-                type = NavType.IntType
+                type = NavType.LongType
             })
         ){
             it.arguments?.let { screen ->
                 PlaceEditScreen(navController = navController,
-                    id = screen.getInt("id")
+                    id = screen.getLong("id")
                 )
             }
         }

@@ -27,12 +27,12 @@ fun BookingListItem(
 ) {
 
     val selectedIndex by remember{ mutableStateOf(-1) }
-    val bookingAddressText = "${booking?.address?.city}: ${booking?.address?.street}, ${booking?.address?.building}-${booking?.address?.apartment}"
+    val bookingAddressText = "${booking?.address?.street}, ${booking?.address?.building}-${booking?.address?.apartment}"
     Row(
         modifier = Modifier
-            .background(MaterialTheme.colors.secondary)
+            .background(MaterialTheme.colors.secondaryVariant)
             .fillMaxWidth()
-            .padding(24.dp)
+            .padding(15.dp)
             .selectable(
                 selected = true,
                 onClick = {
@@ -46,7 +46,7 @@ fun BookingListItem(
             text = booking?.booking?.title.toString(),
             color = MaterialTheme.colors.primaryVariant,
             fontSize = MaterialTheme.typography.body1.fontSize,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Normal
         )
         Text(
             text = bookingAddressText,

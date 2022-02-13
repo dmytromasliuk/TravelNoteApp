@@ -15,7 +15,7 @@ interface PlaceDao {
 
     @Transaction
     @Query("SELECT * FROM place_table WHERE id=:id")
-    fun getPlaceById(id: Int): LiveData<Place>
+    fun getPlaceById(id: Long): LiveData<Place>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addNewPlace(place: Place)
@@ -27,7 +27,7 @@ interface PlaceDao {
     suspend fun deletePlace(place: Place)
 
     @Query("DELETE FROM place_table WHERE id=:id")
-    suspend fun deletePlaceById(id: Int)
+    suspend fun deletePlaceById(id: Long)
 
     @Query("DELETE FROM travel_table")
     suspend fun deleteAllPlaces()

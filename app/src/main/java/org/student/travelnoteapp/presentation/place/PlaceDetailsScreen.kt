@@ -8,7 +8,7 @@ import androidx.navigation.NavController
 fun PlaceDetailsScreen(
     navController: NavController,
     viewModel: PlaceDetailsViewModel = hiltViewModel(),
-    id: Int
+    id: Long
 ) {
 
 }

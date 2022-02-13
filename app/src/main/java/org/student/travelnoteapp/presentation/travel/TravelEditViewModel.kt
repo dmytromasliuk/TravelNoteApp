@@ -21,7 +21,7 @@ class TravelEditViewModel @Inject constructor(
     private val travelRepository: TravelRepository
 ): ViewModel() {
 
-    private var _id: Int = 0
+    private var _id: Long = 0
 
     private val _travelNameText: MutableLiveData<String> = MutableLiveData("")
     val travelNameText : MutableLiveData<String> = _travelNameText
@@ -47,7 +47,7 @@ class TravelEditViewModel @Inject constructor(
         }
     }
 
-    fun setViewModelTravelId(id: Int){
+    fun setViewModelTravelId(id: Long){
          _id = id
     }
 
@@ -59,7 +59,7 @@ class TravelEditViewModel @Inject constructor(
         _descriptionText.value = description
     }
 
-    fun getTravel(id: Int): LiveData<TravelWithAllInfo> {
+    fun getTravel(id: Long): LiveData<TravelWithAllInfo> {
         return travelRepository.getTravelById(id)
     }
 
@@ -69,7 +69,7 @@ class TravelEditViewModel @Inject constructor(
         }
     }
 
-    fun deleteTravel(id: Int) {
+    fun deleteTravel(id: Long) {
         viewModelScope.launch(Dispatchers.IO){
             travelRepository.deleteTravelById(id)
         }

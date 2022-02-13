@@ -31,7 +31,8 @@ import org.student.travelnoteapp.presentation.util.Screen
 @Composable
 fun AddTicketScreen(
     navController: NavController,
-    viewModel: AddTicketViewModel = hiltViewModel()
+    viewModel: AddTicketViewModel = hiltViewModel(),
+    travelId: Long
 ) {
 
     val context = LocalContext.current
@@ -60,7 +61,8 @@ fun AddTicketScreen(
                 )
                 IconButton(
                     onClick = {
-                        //navController.navigate("travel_edit_screen/$id")
+                        viewModel.addTicket(travelId)
+                        navController.navigate("travel_details_screen/$travelId")
                     },
                     modifier = Modifier.padding(end = 15.dp)
                 ) {

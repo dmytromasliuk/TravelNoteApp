@@ -34,14 +34,14 @@ import timber.log.Timber
 fun TravelDetailsScreen(
     navController: NavController,
     viewModel: TravelDetailsViewModel = hiltViewModel(),
-    id: Int
+    id: Long
 ) {
 
     val categories = listOf("Tickets","Bookings","Places")
     val travel = viewModel.getTravel(id).observeAsState().value?.travel
-    val tickets = viewModel.tickets
-    val bookings = viewModel.bookings
-    val places = viewModel.places
+    val tickets = viewModel.getTravel(id).observeAsState().value?.tickets
+    val bookings = viewModel.getTravel(id).observeAsState().value?.bookings
+    val places = viewModel.getTravel(id).observeAsState().value?.places
     viewModel.setViewModelTravelId(id)
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -112,12 +112,11 @@ fun TravelDetailsScreen(
                             IconButton(
                                 onClick = {
                                     when (category){
-                                        "Tickets" -> navController.navigate("add_ticket_screen")
-                                        "Bookings" -> navController.navigate("add_booking_screen")
-                                        "Places" -> navController.navigate("add_place_screen")
+                                        "Tickets" -> navController.navigate("add_ticket_screen/$id")
+                                        "Bookings" -> navController.navigate("add_booking_screen/$id")
+                                        "Places" -> navController.navigate("add_place_screen/$id")
                                     }
-                                },
-                                modifier = Modifier.padding(end = 15.dp)
+                                }
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Add,
@@ -125,7 +124,6 @@ fun TravelDetailsScreen(
                                     tint = MaterialTheme.colors.onSecondary
                                 )
                             }
-
                         }
                     }
                     when (category) {

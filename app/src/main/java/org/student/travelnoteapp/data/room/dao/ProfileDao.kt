@@ -10,7 +10,7 @@ interface ProfileDao {
 
     @Transaction
     @Query("SELECT * FROM profile_table WHERE id=:id")
-    fun getProfileById(id: Int): LiveData<ProfileAndTravel>
+    fun getProfileById(id: Long): LiveData<ProfileAndTravel>
 
     @Update
     suspend fun updateProfile(profile: Profile)

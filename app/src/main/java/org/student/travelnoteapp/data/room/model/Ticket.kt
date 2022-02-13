@@ -8,8 +8,8 @@ import java.time.LocalTime
 @Entity(tableName = "ticket_table")
 data class Ticket(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val travelId: Int,
+    val id: Long,
+    val travelId: Long,
     val ticketNumber: String,
     val destinationFrom: String,
     val destinationTo: String,

@@ -9,8 +9,8 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "travel_table")
 data class Travel(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val profileId: Int,
+    val id: Long,
+    val profileId: Long,
     val name: String,
     val description: String
 ): Parcelable

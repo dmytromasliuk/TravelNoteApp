@@ -15,7 +15,7 @@ import org.student.travelnoteapp.data.room.model.*
         Place::class,
         Booking::class,
         Address::class],
-    version = 7
+    version = 8
 )
 abstract class TravelDatabase: RoomDatabase() {
 

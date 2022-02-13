@@ -21,7 +21,7 @@ interface BookingDao {
     suspend fun addNewBooking(booking: Booking)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addNewAddress(address: Address)
+    suspend fun addNewAddress(address: Address): Long
 
     @Update
     suspend fun updateBooking(booking: Booking)
@@ -30,7 +30,7 @@ interface BookingDao {
     suspend fun deleteBooking(booking: Booking)
 
     @Query("DELETE FROM booking_table WHERE id=:id")
-    suspend fun deleteBookingById(id: Int)
+    suspend fun deleteBookingById(id: Long)
 
     @Query("DELETE FROM booking_table")
     suspend fun deleteAllBookings()

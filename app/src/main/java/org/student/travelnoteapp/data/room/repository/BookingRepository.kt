@@ -22,8 +22,8 @@ class BookingRepository @Inject constructor(
         bookingDao.addNewBooking(booking = booking)
     }
 
-    suspend fun addNewAddress(address: Address){
-        bookingDao.addNewAddress(address = address)
+    suspend fun addNewAddress(address: Address): Long{
+        return bookingDao.addNewAddress(address = address)
     }
 
     suspend fun updateBooking(booking: Booking){
@@ -34,7 +34,7 @@ class BookingRepository @Inject constructor(
         bookingDao.deleteBooking(booking = booking)
     }
 
-    suspend fun deleteBookingById(id: Int){
+    suspend fun deleteBookingById(id: Long){
         bookingDao.deleteBookingById(id = id)
     }
 

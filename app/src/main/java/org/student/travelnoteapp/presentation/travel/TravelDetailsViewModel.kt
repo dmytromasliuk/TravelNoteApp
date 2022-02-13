@@ -31,11 +31,11 @@ class TravelDetailsViewModel @Inject constructor(
     private val placeRepository: PlaceRepository
 ): ViewModel() {
 
-    private val _id = mutableStateOf(0)
-    val id: State<Int> = _id
+    private val _id = mutableStateOf(0L)
+    val id: State<Long> = _id
 
-    private val _ticketId = mutableStateOf(0)
-    val ticketId: State<Int> = _ticketId
+    private val _ticketId = mutableStateOf(0L)
+    val ticketId: State<Long> = _ticketId
 
     private val _travelNameText = mutableStateOf("")
     val travelNameText : State<String> = _travelNameText
@@ -47,7 +47,7 @@ class TravelDetailsViewModel @Inject constructor(
     val bookings: List<BookingAndAddress>? = travelRepository.getTravelById(_id.value).value?.bookings
     val places: List<Place>? = travelRepository.getTravelById(_id.value).value?.places
 
-    fun getTravel(id: Int): LiveData<TravelWithAllInfo>{
+    fun getTravel(id: Long): LiveData<TravelWithAllInfo>{
         return travelRepository.getTravelById(id)
     }
 
@@ -69,11 +69,11 @@ class TravelDetailsViewModel @Inject constructor(
         }
     }
 
-    fun setViewModelTravelId(id: Int){
+    fun setViewModelTravelId(id: Long){
         _id.value = id
     }
 
-    fun setTicketId(ticketId: Int){
+    fun setTicketId(ticketId: Long){
         _ticketId.value = ticketId
     }
 

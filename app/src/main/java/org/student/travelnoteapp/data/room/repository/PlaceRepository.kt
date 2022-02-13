@@ -12,7 +12,7 @@ class PlaceRepository @Inject constructor(
 
     val getAllPlaces: LiveData<List<Place>> = placeDao.getAllPlaces()
 
-    fun getPlaceById(id: Int): LiveData<Place>{
+    fun getPlaceById(id: Long): LiveData<Place>{
         return placeDao.getPlaceById(id)
     }
 
@@ -28,7 +28,7 @@ class PlaceRepository @Inject constructor(
         placeDao.deletePlace(place = place)
     }
 
-    suspend fun deletePlaceById(id: Int){
+    suspend fun deletePlaceById(id: Long){
         placeDao.deletePlaceById(id)
     }
 

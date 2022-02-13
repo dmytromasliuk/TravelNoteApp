@@ -16,7 +16,7 @@ class TravelRepository @Inject constructor(
 
     val getAllTravels: LiveData<List<TravelWithAllInfo>> = travelDao.getAllTravels()
 
-    fun getTravelById(id: Int): LiveData<TravelWithAllInfo>{
+    fun getTravelById(id: Long): LiveData<TravelWithAllInfo>{
         return travelDao.getTravelById(id)
     }
 
@@ -28,7 +28,7 @@ class TravelRepository @Inject constructor(
         travelDao.updateTravel(travel = travel)
     }
 
-    suspend fun deleteTravelById(id: Int){
+    suspend fun deleteTravelById(id: Long){
         travelDao.deleteTravelById(id)
     }
 

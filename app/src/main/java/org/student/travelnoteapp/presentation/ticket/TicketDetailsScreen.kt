@@ -8,7 +8,7 @@ import androidx.navigation.NavController
 fun TicketDetailsScreen(
     navController: NavController,
     viewModel: TicketDetailsViewModel = hiltViewModel(),
-    id: Int
+    id: Long
 ) {
 
 }

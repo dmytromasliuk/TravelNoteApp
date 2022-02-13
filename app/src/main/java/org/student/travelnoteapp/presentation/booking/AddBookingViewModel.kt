@@ -2,12 +2,23 @@ package org.student.travelnoteapp.presentation.booking
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.student.travelnoteapp.data.room.model.Address
+import org.student.travelnoteapp.data.room.model.Booking
+import org.student.travelnoteapp.data.room.repository.AddressRepository
+import org.student.travelnoteapp.data.room.repository.BookingRepository
 import org.student.travelnoteapp.data.room.repository.TravelRepository
 import javax.inject.Inject
 
+@HiltViewModel
 class AddBookingViewModel @Inject constructor(
-    //private val travelRepository: TravelRepository
+    private val bookingRepository: BookingRepository,
+    private val addressRepository: AddressRepository
 ): ViewModel() {
 
     private val _title = mutableStateOf("")
@@ -36,6 +47,9 @@ class AddBookingViewModel @Inject constructor(
 
     private val _apartment = mutableStateOf("")
     val apartment: State<String> = _apartment
+
+    private val _lastAddressId = mutableStateOf(0)
+    val lastAddressId: State<Int> = _lastAddressId
 
     fun setTitle(title: String){
         _title.value = title
@@ -71,5 +85,35 @@ class AddBookingViewModel @Inject constructor(
 
     fun setApartment(apartment: String){
         _apartment.value = apartment
+    }
+
+    fun getLastAddress(): LiveData<Address>{
+        return addressRepository.getLastAddress()
+    }
+
+    fun addBooking(travelId: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val addressId = bookingRepository.addNewAddress(
+                Address(
+                    0,
+                    _apartment.value,
+                    _building.value,
+                    _street.value,
+                    _city.value,
+                    _country.value
+                )
+            )
+            bookingRepository.addNewBooking(
+                Booking(
+                    0,
+                    travelId,
+                    addressId,
+                    _title.value,
+                    _email.value,
+                    _phone.value,
+                    _price.value
+                )
+            )
+        }
     }
 }

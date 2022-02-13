@@ -16,6 +16,10 @@ class AddressRepository @Inject constructor(
         return addressDao.getAddressById(id = id)
     }
 
+    fun getLastAddress(): LiveData<Address> {
+        return addressDao.getLastAddress()
+    }
+
     suspend fun addNewAddress(address: Address){
         addressDao.addNewAddress(address = address)
     }
@@ -28,7 +32,7 @@ class AddressRepository @Inject constructor(
         addressDao.deleteAddress(address = address)
     }
 
-    suspend fun deleteAddressById(id: Int){
+    suspend fun deleteAddressById(id: Long){
         addressDao.deleteAddressById(id = id)
     }
 

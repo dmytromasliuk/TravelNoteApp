@@ -30,7 +30,7 @@ import timber.log.Timber
 fun TravelEditScreen(
     navController: NavController,
     viewModel: TravelEditViewModel = hiltViewModel(),
-    id: Int
+    id: Long
 ) {
 
     Timber.d("Id value in composable${id}")

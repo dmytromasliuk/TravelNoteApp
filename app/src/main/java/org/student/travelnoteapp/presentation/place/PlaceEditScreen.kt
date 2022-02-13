@@ -8,7 +8,7 @@ import androidx.navigation.NavController
 fun PlaceEditScreen(
     navController: NavController,
     viewModel: PlaceEditViewModel = hiltViewModel(),
-    id: Int
+    id: Long
 ) {
 
 }
