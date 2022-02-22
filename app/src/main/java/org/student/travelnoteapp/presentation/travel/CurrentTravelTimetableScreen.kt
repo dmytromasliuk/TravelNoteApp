@@ -1,28 +1,64 @@
 package org.student.travelnoteapp.presentation.travel
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import org.student.travelnoteapp.presentation.components.BookingListItem
+import org.student.travelnoteapp.presentation.components.PlaceListItem
+import org.student.travelnoteapp.presentation.components.TicketListItem
+import org.student.travelnoteapp.presentation.components.TimetableListItem
 import org.student.travelnoteapp.presentation.util.Screen
+import org.student.travelnoteapp.presentation.util.TimetableItemModel
+import timber.log.Timber
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CurrentTravelTimetableScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: CurrentTravelTimetableViewModel = hiltViewModel()
 ) {
+
+    val travel = viewModel.travel.observeAsState().value
+    val items = mutableListOf<TimetableItemModel>()
+    val dates = mutableListOf<String>()
+    travel?.tickets?.forEach {
+        items.add(
+            TimetableItemModel(
+                it.date,
+                it.time,
+                "to ${it.destinationTo}")
+        )
+        dates.add(it.date)
+    }
+    travel?.places?.forEach {
+        items.add(
+            TimetableItemModel(
+                it.date,
+                it.time,
+                it.title)
+        )
+        if (!dates.contains(it.date)) dates.add(it.date)
+    }
+    dates.sort()
+    items.sortBy { it.times }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -43,7 +79,7 @@ fun CurrentTravelTimetableScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Current travel timetable",
+                    text = "${travel?.travel?.name} timetable",
                     color = MaterialTheme.colors.background,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
@@ -52,13 +88,45 @@ fun CurrentTravelTimetableScreen(
             }
         }
 
+        Box(modifier = Modifier
+            .fillMaxSize()
+        ) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .background(MaterialTheme.colors.background),
+                reverseLayout = false,
+                //verticalArrangement = Arrangement.spacedBy(5.dp)
+            ) {
+                dates.forEach { date ->
+                    stickyHeader {
+                        Card(
+                            modifier = Modifier.fillMaxWidth(),
+                            elevation = 5.dp,
+                            backgroundColor = MaterialTheme.colors.secondary
+                        ) {
+                            Row(
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    modifier = Modifier.padding(8.dp),
+                                    text = date,
+                                    color = MaterialTheme.colors.onSecondary,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = MaterialTheme.typography.body1.fontSize
+                                )
+                            }
+                        }
+                    }
+                    items(items){ item ->
+                        if (item.date == date){
+                            TimetableListItem(time = item.times, description = item.description)
+                        }
+                    }
+                }
+            }
+        }
     }
-}
-
-@Composable
-@Preview(showBackground = true)
-fun CurrentTravelTimetableScreenPreview() {
-    CurrentTravelTimetableScreen(
-        navController = rememberNavController()
-    )
 }

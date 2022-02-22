@@ -12,7 +12,7 @@ class TicketRepository @Inject constructor(
 
     val getAllTickets: LiveData<List<Ticket>> = ticketDao.getAllTickets()
 
-    suspend fun getTicketById(id: Long): Ticket{
+    fun getTicketById(id: Long): LiveData<Ticket>{
         return ticketDao.getTicketById(id)
     }
 

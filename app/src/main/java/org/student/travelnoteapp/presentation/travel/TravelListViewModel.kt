@@ -28,6 +28,9 @@ class TravelListViewModel @Inject constructor(
 
     val travels: LiveData<List<TravelWithAllInfo>> = travelRepository.getAllTravels
 
+    private val _selectedTravel = mutableStateOf(-1L)
+    val selectedTravel: State<Long> = _selectedTravel
+
     fun addNewTravel(travel: Travel){
         viewModelScope.launch(Dispatchers.IO) {
             travelRepository.addNewTravel(travel = travel)
@@ -37,6 +40,12 @@ class TravelListViewModel @Inject constructor(
     fun updateTravel(travel: Travel){
         viewModelScope.launch(Dispatchers.IO) {
             travelRepository.updateTravel(travel = travel)
+        }
+    }
+
+    fun updateCurrentTravel(id: Long, current: Boolean){
+        viewModelScope.launch(Dispatchers.IO) {
+            travelRepository.updateCurrentTravel(id, current)
         }
     }
 
@@ -50,6 +59,10 @@ class TravelListViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO){
             travelRepository.deleteAllTravels()
         }
+    }
+
+    fun setSelectedTravel(selected: Long){
+        _selectedTravel.value = selected
     }
 
 }

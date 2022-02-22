@@ -12,7 +12,7 @@ interface TicketDao {
     fun getAllTickets(): LiveData<List<Ticket>>
 
     @Query("SELECT * FROM ticket_table WHERE id=:id")
-    suspend fun getTicketById(id: Long): Ticket
+    fun getTicketById(id: Long): LiveData<Ticket>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addNewTicket(ticket: Ticket)

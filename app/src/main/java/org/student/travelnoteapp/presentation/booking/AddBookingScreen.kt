@@ -49,7 +49,7 @@ fun AddBookingScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Add new ticket",
+                    text = "Add new booking",
                     color = MaterialTheme.colors.background,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,

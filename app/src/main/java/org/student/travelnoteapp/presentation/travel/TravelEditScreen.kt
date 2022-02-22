@@ -1,12 +1,14 @@
 package org.student.travelnoteapp.presentation.travel
 
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -19,6 +21,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -33,14 +36,77 @@ fun TravelEditScreen(
     id: Long
 ) {
 
-    Timber.d("Id value in composable${id}")
-    viewModel.setViewModelTravelId(id)
-
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .height(55.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(55.dp)
+                    .background(MaterialTheme.colors.primary),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Edit travel",
+                    color = MaterialTheme.colors.background,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(start = 15.dp)
+                )
+                IconButton(
+                    onClick = {
+                        viewModel.deleteTravel(id)
+                        navController.navigate(Screen.TravelList.route)
+                        {
+                            popUpTo(Screen.TravelList.route){
+                                inclusive = true
+                            }
+                        }
+                    },
+                    modifier = Modifier.padding(end = 15.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete travel icon",
+                        tint = MaterialTheme.colors.background
+                    )
+                }
+                IconButton(
+                    onClick = {
+                        val travel = Travel(
+                            id,
+                            0,
+                            viewModel.travelNameText.value,
+                            viewModel.descriptionText.value,
+                            false
+                        )
+                        viewModel.updateTravel(travel = travel)
+                        navController.navigate("travel_details_screen/$id"){
+                            popUpTo(Screen.TravelList.route){
+                                inclusive = true
+                            }
+                        }
+                    },
+                    modifier = Modifier.padding(end = 15.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Done,
+                        contentDescription = "Update travel icon",
+                        tint = MaterialTheme.colors.background
+                    )
+                }
+            }
+        }
 
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -48,24 +114,11 @@ fun TravelEditScreen(
             verticalArrangement = Arrangement.Center
         ) {
 
-            Text(
-                modifier = Modifier.padding(bottom = 25.dp),
-                text = "Edit travel",
-                color = MaterialTheme.colors.primary,
-                fontWeight = FontWeight.Bold,
-                fontSize = MaterialTheme.typography.h4.fontSize
-            )
-
             //Travel name
-            val travel = viewModel.getTravel(id).observeAsState().value?.travel
-            val travelName by remember { mutableStateOf(travel?.name) }
-            val travelDescription by remember { mutableStateOf(travel?.description) }
-            val tn = viewModel.travelNameText.observeAsState(viewModel.getTravel(id).value?.travel?.name)
-            Timber.d("Value in tn - $tn")
             OutlinedTextField(
-                value = tn.value.toString(),
-                onValueChange = { name ->
-                    viewModel.setTravelName(name.trimStart { it == '0' })
+                value = viewModel.travelNameText.value,
+                onValueChange = {
+                    viewModel.setTravelName(it)
                 },
                 label = {
                     Text(text = "Travel name")
@@ -79,9 +132,8 @@ fun TravelEditScreen(
             )
 
             //Description
-            val td = viewModel.descriptionText.observeAsState(viewModel.getTravel(id).value?.travel?.description)
             OutlinedTextField(
-                value = td.value.toString(),
+                value = viewModel.descriptionText.value,
                 onValueChange = {
                     viewModel.setDescription(it)
                 },
@@ -96,67 +148,6 @@ fun TravelEditScreen(
                 )
             )
 
-
-            //UpdateTravelButton
-            Button(
-                onClick = {
-                    val travel = Travel(
-                        id,
-                        0,
-                        tn.value!!,
-                        td.value!!
-                    )
-                    viewModel.updateTravel(travel = travel)
-                    navController.navigate(Screen.TravelList.route){
-                        popUpTo(Screen.TravelList.route){
-                            inclusive = true
-                        }
-                    }
-                },
-                modifier = Modifier
-                    .padding(10.dp)
-                    .size(150.dp, 40.dp)
-            ) {
-                Text(
-                    text = "Update",
-                    color = MaterialTheme.colors.secondary,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = MaterialTheme.typography.button.fontSize
-                )
-
-            }
-
-            //DeleteTravelButton
-            Button(
-                onClick = {
-                    viewModel.deleteTravel(id)
-                    navController.navigate(Screen.TravelList.route)
-                    {
-                        popUpTo(Screen.TravelList.route){
-                            inclusive = true
-                        }
-                    }
-                },
-                modifier = Modifier
-                    .padding(10.dp)
-                    .size(150.dp, 40.dp)
-            ) {
-                Text(
-                    text = "Delete",
-                    color = MaterialTheme.colors.secondary,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = MaterialTheme.typography.button.fontSize
-                )
-
-            }
         }
     }
 }
-
-//@Composable
-//@Preview(showBackground = true)
-//fun TravelEditScreenPreview() {
-//    TravelEditScreen(
-//        navController = rememberNavController()
-//    )
-//}

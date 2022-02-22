@@ -2,32 +2,25 @@ package org.student.travelnoteapp.presentation.travel
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import org.student.travelnoteapp.data.room.model.Ticket
 import org.student.travelnoteapp.presentation.components.BookingListItem
 import org.student.travelnoteapp.presentation.components.PlaceListItem
 import org.student.travelnoteapp.presentation.components.TicketListItem
-import org.student.travelnoteapp.presentation.components.TravelDetailsItem
-import org.student.travelnoteapp.presentation.util.Screen
-import timber.log.Timber
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -81,11 +74,8 @@ fun TravelDetailsScreen(
             }
         }
 
-        var newTicket: Ticket? = null
-
         Box(modifier = Modifier
             .fillMaxSize()
-            //.padding(10.dp)
         ) {
             LazyColumn(
                 modifier = Modifier
@@ -102,27 +92,32 @@ fun TravelDetailsScreen(
                             elevation = 5.dp,
                             backgroundColor = MaterialTheme.colors.secondary
                         ) {
-                            Text(
-                                modifier = Modifier.padding(8.dp),
-                                text = category,
-                                color = MaterialTheme.colors.onSecondary,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = MaterialTheme.typography.body1.fontSize
-                            )
-                            IconButton(
-                                onClick = {
-                                    when (category){
-                                        "Tickets" -> navController.navigate("add_ticket_screen/$id")
-                                        "Bookings" -> navController.navigate("add_booking_screen/$id")
-                                        "Places" -> navController.navigate("add_place_screen/$id")
-                                    }
-                                }
+                            Row(
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Icon(
-                                    imageVector = Icons.Default.Add,
-                                    contentDescription = "Add item icon",
-                                    tint = MaterialTheme.colors.onSecondary
+                                Text(
+                                    modifier = Modifier.padding(8.dp),
+                                    text = category,
+                                    color = MaterialTheme.colors.onSecondary,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = MaterialTheme.typography.body1.fontSize
                                 )
+                                IconButton(
+                                    onClick = {
+                                        when (category){
+                                            "Tickets" -> navController.navigate("add_ticket_screen/$id")
+                                            "Bookings" -> navController.navigate("add_booking_screen/$id")
+                                            "Places" -> navController.navigate("add_place_screen/$id")
+                                        }
+                                    }
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Rounded.Add,
+                                        contentDescription = "Add item icon",
+                                        tint = MaterialTheme.colors.onSecondary
+                                    )
+                                }
                             }
                         }
                     }

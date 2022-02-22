@@ -19,6 +19,10 @@ interface TravelDao {
     @Query("SELECT * FROM travel_table WHERE id=:id")
     fun getTravelById(id: Long): LiveData<TravelWithAllInfo>
 
+    @Transaction
+    @Query("SELECT * FROM travel_table WHERE isCurrent=1")
+    fun getCurrentTravel(): LiveData<TravelWithAllInfo>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addNewTravel(travel: Travel)
 
@@ -27,6 +31,9 @@ interface TravelDao {
 
     @Update
     suspend fun updateTravel(travel: Travel)
+
+    @Query("UPDATE travel_table Set isCurrent = :current WHERE id = :id")
+    suspend fun updateCurrentTravel(id: Long, current: Boolean)
 
     @Delete
     suspend fun deleteTravel(travel: Travel)

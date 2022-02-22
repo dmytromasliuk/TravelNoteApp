@@ -36,7 +36,8 @@ class AddNewTravelViewModel @Inject constructor(
                 0,
                 0,
                 travelNameText.value,
-                descriptionText.value
+                descriptionText.value,
+                false
             ))
         }
     }

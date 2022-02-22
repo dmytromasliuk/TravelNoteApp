@@ -20,12 +20,20 @@ class TravelRepository @Inject constructor(
         return travelDao.getTravelById(id)
     }
 
+    fun getCurrentTravel(): LiveData<TravelWithAllInfo>{
+        return travelDao.getCurrentTravel()
+    }
+
     suspend fun addNewTravel(travel: Travel){
         travelDao.addNewTravel(travel)
     }
 
     suspend fun updateTravel(travel: Travel){
         travelDao.updateTravel(travel = travel)
+    }
+
+    suspend fun updateCurrentTravel(id: Long, current: Boolean){
+        travelDao.updateCurrentTravel(id, current)
     }
 
     suspend fun deleteTravelById(id: Long){

@@ -8,6 +8,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import org.student.travelnoteapp.data.room.model.Ticket
 import org.student.travelnoteapp.presentation.booking.AddBookingScreen
 import org.student.travelnoteapp.presentation.booking.BookingDetailsScreen
 import org.student.travelnoteapp.presentation.booking.BookingEditScreen
@@ -90,13 +91,20 @@ fun NavGraph(
         }
         composable(
             route = Screen.TicketDetails.route,
-            arguments = listOf(navArgument("id"){
-                type = NavType.LongType
-            })
+            arguments = listOf(
+                navArgument("travelId"){
+                    type = NavType.LongType
+                },
+                navArgument("ticketId"){
+                    type = NavType.LongType
+                }
+            )
         ){
             it.arguments?.let { screen ->
-                TicketDetailsScreen(navController = navController,
-                    id = screen.getLong("id")
+                TicketDetailsScreen(
+                    navController = navController,
+                    travelId = screen.getLong("travelId"),
+                    ticketId = screen.getLong("ticketId")
                 )
             }
         }
@@ -115,13 +123,20 @@ fun NavGraph(
         }
         composable(
             route = Screen.TicketEdit.route,
-            arguments = listOf(navArgument("id"){
+            arguments = listOf(
+                navArgument("travelId"){
                 type = NavType.LongType
-            })
+                },
+                navArgument("ticketId"){
+                    type = NavType.LongType
+                }
+            )
         ){
             it.arguments?.let { screen ->
-                TicketEditScreen(navController = navController,
-                    id = screen.getLong("id")
+                TicketEditScreen(
+                    navController = navController,
+                    travelId = screen.getLong("travelId"),
+                    ticketId = screen.getLong("ticketId")
                 )
             }
         }
@@ -132,7 +147,8 @@ fun NavGraph(
             })
         ){
             it.arguments?.let { screen ->
-                BookingDetailsScreen(navController = navController,
+                BookingDetailsScreen(
+                    navController = navController,
                     travelId = screen.getLong("id")
                 )
             }

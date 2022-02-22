@@ -35,7 +35,7 @@ fun TicketListItem(
             .selectable(
                 selected = true,
                 onClick = {
-                    navController.navigate("ticket_details_screen/" + ticket?.id)
+                    navController.navigate("ticket_details_screen/${ticket?.travelId}/${ticket?.id}")
                 }
             ),
         verticalAlignment = Alignment.CenterVertically,

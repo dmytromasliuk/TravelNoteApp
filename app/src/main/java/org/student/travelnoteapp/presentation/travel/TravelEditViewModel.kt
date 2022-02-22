@@ -23,33 +23,12 @@ class TravelEditViewModel @Inject constructor(
 
     private var _id: Long = 0
 
-    private val _travelNameText: MutableLiveData<String> = MutableLiveData("")
-    val travelNameText : MutableLiveData<String> = _travelNameText
+    private val _travelNameText = mutableStateOf("")
+    val travelNameText : State<String> = _travelNameText
 
-    private val _descriptionText: MutableLiveData<String> = MutableLiveData("")
-    val descriptionText : MutableLiveData<String> = _descriptionText
+    private val _descriptionText = mutableStateOf("")
+    val descriptionText : State<String> = _descriptionText
 
-    var tmp: String? = ""
-
-    //TODO: WTF???!!!
-    init{
-        viewModelScope.launch(Dispatchers.Main) {
-            Timber.d("Id value in viewmodel ${_id}")
-            val testTravel = travelRepository.getTravelById(_id)
-            Timber.d( "Try to catch travel name: ${testTravel.value?.travel?.name.toString()}")
-
-
-            Timber.d( "tmp value in viewmodel ${travelRepository.getTravelById(5).value?.travel?.name}")
-            setTravelName(travelRepository.getTravelById(_id).value?.travel?.name.toString())
-            Timber.d( "travelName value in viewmodel ${_travelNameText.value}")
-            setDescription(travelRepository.getTravelById(_id).value?.travel?.description.toString())
-            Timber.d("description in viewmodel ${_descriptionText.value}")
-        }
-    }
-
-    fun setViewModelTravelId(id: Long){
-         _id = id
-    }
 
     fun setTravelName(travelName: String){
         _travelNameText.value = travelName
@@ -57,10 +36,6 @@ class TravelEditViewModel @Inject constructor(
 
     fun setDescription(description: String){
         _descriptionText.value = description
-    }
-
-    fun getTravel(id: Long): LiveData<TravelWithAllInfo> {
-        return travelRepository.getTravelById(id)
     }
 
     fun updateTravel(travel: Travel) {
