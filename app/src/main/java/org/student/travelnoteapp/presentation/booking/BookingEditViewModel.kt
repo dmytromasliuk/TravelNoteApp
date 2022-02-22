@@ -91,29 +91,17 @@ class BookingEditViewModel @Inject constructor(
         return addressRepository.getLastAddress()
     }
 
-    fun addBooking(travelId: Long) {
+    fun updateBooking(booking: Booking, address: Address) {
         viewModelScope.launch(Dispatchers.IO) {
-            val addressId = bookingRepository.addNewAddress(
-                Address(
-                    0,
-                    _apartment.value,
-                    _building.value,
-                    _street.value,
-                    _city.value,
-                    _country.value
-                )
-            )
-            bookingRepository.addNewBooking(
-                Booking(
-                    0,
-                    travelId,
-                    addressId,
-                    _title.value,
-                    _email.value,
-                    _phone.value,
-                    _price.value
-                )
-            )
+            addressRepository.updateAddress(address)
+            bookingRepository.updateBooking(booking)
+        }
+    }
+
+    fun deleteBooking(bookingId: Long, addressId: Long){
+        viewModelScope.launch(Dispatchers.IO) {
+            addressRepository.deleteAddressById(addressId)
+            bookingRepository.deleteBookingById(bookingId)
         }
     }
 

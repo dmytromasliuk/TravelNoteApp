@@ -47,7 +47,7 @@ fun TicketDetailsScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Edit ticket",
+                    text = "Ticket details",
                     color = MaterialTheme.colors.background,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,

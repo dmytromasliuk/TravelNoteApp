@@ -31,7 +31,7 @@ fun TicketListItem(
         modifier = Modifier
             .background(MaterialTheme.colors.secondaryVariant)
             .fillMaxWidth()
-            .padding(15.dp)
+            .height(53.dp)
             .selectable(
                 selected = true,
                 onClick = {
@@ -47,7 +47,8 @@ fun TicketListItem(
                     text = ticket?.destinationFrom.toString(),
                     color = MaterialTheme.colors.primaryVariant,
                     fontSize = MaterialTheme.typography.body1.fontSize,
-                    fontWeight = FontWeight.Normal
+                    fontWeight = FontWeight.Normal,
+                    modifier = Modifier.padding(start = 10.dp)
                 )
                 Icon(
                     imageVector = Icons.Default.ArrowRightAlt,
@@ -62,12 +63,21 @@ fun TicketListItem(
             }
         }
         Column {
-            Text(
-                text = ticket?.time.toString(),
-                color = MaterialTheme.colors.primaryVariant,
-                fontSize = MaterialTheme.typography.body1.fontSize,
-                fontWeight = FontWeight.Normal
-            )
+            Row {
+                Text(
+                    text = ticket?.time.toString(),
+                    color = MaterialTheme.colors.primaryVariant,
+                    fontSize = MaterialTheme.typography.body1.fontSize,
+                    fontWeight = FontWeight.Normal
+                )
+                Text(
+                    text = ticket?.date.toString().substring(0,5),
+                    color = MaterialTheme.colors.primaryVariant,
+                    fontSize = MaterialTheme.typography.body1.fontSize,
+                    fontWeight = FontWeight.Normal,
+                    modifier = Modifier.padding(start = 7.dp, end = 10.dp)
+                )
+            }
         }
     }
 

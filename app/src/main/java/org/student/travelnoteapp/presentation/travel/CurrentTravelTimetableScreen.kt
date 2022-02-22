@@ -2,6 +2,7 @@ package org.student.travelnoteapp.presentation.travel
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -10,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,6 +41,7 @@ fun CurrentTravelTimetableScreen(
     val travel = viewModel.travel.observeAsState().value
     val items = mutableListOf<TimetableItemModel>()
     val dates = mutableListOf<String>()
+
     travel?.tickets?.forEach {
         items.add(
             TimetableItemModel(
@@ -85,6 +88,13 @@ fun CurrentTravelTimetableScreen(
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(start = 15.dp)
                 )
+//                Text(
+//                    text = "Total time: ",
+//                    color = MaterialTheme.colors.background,
+//                    fontSize = 16.sp,
+//                    fontWeight = FontWeight.Bold,
+//                    modifier = Modifier.padding(start = 15.dp)
+//                )
             }
         }
 

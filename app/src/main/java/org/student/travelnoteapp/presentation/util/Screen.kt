@@ -12,12 +12,12 @@ sealed class Screen(val route: String) {
     object TicketDetails: Screen(route = "ticket_details_screen/{travelId}/{ticketId}")
     object AddTicket: Screen(route = "add_ticket_screen/{travelId}")
     object TicketEdit: Screen(route = "ticket_edit_screen/{travelId}/{ticketId}")
-    object BookingDetails: Screen(route = "booking_details_screen/{id}")
+    object BookingDetails: Screen(route = "booking_details_screen/{travelId}/{bookingId}/{addressId}")
     object AddBooking: Screen(route = "add_booking_screen/{travelId}")
-    object BookingEdit: Screen(route = "booking_edit_screen/{id}")
-    object PlaceDetails: Screen(route = "place_details_screen/{id}")
+    object BookingEdit: Screen(route = "booking_edit_screen/{travelId}/{bookingId}/{addressId}")
+    object PlaceDetails: Screen(route = "place_details_screen/{travelId}/{placeId}")
     object AddPlace: Screen(route = "add_place_screen/{travelId}")
-    object PlaceEdit: Screen(route = "place_edit_screen/{id}")
+    object PlaceEdit: Screen(route = "place_edit_screen/{travelId}/{placeId}")
     object CurrentTravelTimetable: Screen(route = "current_travel_timetable_screen")
 
 }

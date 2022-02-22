@@ -15,7 +15,7 @@ interface BookingDao {
 
     @Transaction
     @Query("SELECT * FROM booking_table WHERE id=:id")
-    fun getBookingById(id: Int): LiveData<BookingAndAddress>
+    fun getBookingById(id: Long): LiveData<BookingAndAddress>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addNewBooking(booking: Booking)

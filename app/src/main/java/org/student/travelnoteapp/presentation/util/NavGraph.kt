@@ -142,14 +142,24 @@ fun NavGraph(
         }
         composable(
             route = Screen.BookingDetails.route,
-            arguments = listOf(navArgument("id"){
-                type = NavType.LongType
-            })
+            arguments = listOf(
+                navArgument("travelId"){
+                    type = NavType.LongType
+                },
+                navArgument("bookingId"){
+                    type = NavType.LongType
+                },
+                navArgument("addressId"){
+                    type = NavType.LongType
+                }
+            )
         ){
             it.arguments?.let { screen ->
                 BookingDetailsScreen(
                     navController = navController,
-                    travelId = screen.getLong("id")
+                    travelId = screen.getLong("travelId"),
+                    bookingId = screen.getLong("bookingId"),
+                    addressId = screen.getLong("addressId"),
                 )
             }
         }
@@ -168,27 +178,43 @@ fun NavGraph(
         }
         composable(
             route = Screen.BookingEdit.route,
-            arguments = listOf(navArgument("id"){
-                type = NavType.LongType
-            })
+            arguments = listOf(
+                navArgument("travelId"){
+                    type = NavType.LongType
+                },
+                navArgument("bookingId"){
+                    type = NavType.LongType
+                },
+                navArgument("addressId"){
+                    type = NavType.LongType
+                }
+            )
         ){
             it.arguments?.let { screen ->
                 BookingEditScreen(
                     navController = navController,
-                    id = screen.getLong("id")
+                    travelId = screen.getLong("travelId"),
+                    bookingId = screen.getLong("bookingId"),
+                    addressId = screen.getLong("addressId")
                 )
             }
         }
         composable(
             route = Screen.PlaceDetails.route,
-            arguments = listOf(navArgument("id"){
-                type = NavType.LongType
-            })
+            arguments = listOf(
+                navArgument("travelId"){
+                    type = NavType.LongType
+                },
+                navArgument("placeId"){
+                    type = NavType.LongType
+                }
+            )
         ){
             it.arguments?.let { screen ->
                 PlaceDetailsScreen(
                     navController = navController,
-                    id = screen.getLong("id")
+                    travelId = screen.getLong("travelId"),
+                    placeId = screen.getLong("placeId")
                 )
             }
         }
@@ -207,13 +233,19 @@ fun NavGraph(
         }
         composable(
             route = Screen.PlaceEdit.route,
-            arguments = listOf(navArgument("id"){
-                type = NavType.LongType
-            })
+            arguments = listOf(
+                navArgument("travelId"){
+                    type = NavType.LongType
+                },
+                navArgument("placeId"){
+                    type = NavType.LongType
+                }
+            )
         ){
             it.arguments?.let { screen ->
                 PlaceEditScreen(navController = navController,
-                    id = screen.getLong("id")
+                    travelId = screen.getLong("travelId"),
+                    placeId = screen.getLong("placeId")
                 )
             }
         }

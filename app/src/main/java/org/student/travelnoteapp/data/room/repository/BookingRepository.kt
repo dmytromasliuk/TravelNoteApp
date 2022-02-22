@@ -14,7 +14,7 @@ class BookingRepository @Inject constructor(
 
     val getAllBookings: LiveData<List<BookingAndAddress>> = bookingDao.getAllBookings()
 
-    fun getBookingById(id: Int): LiveData<BookingAndAddress>{
+    fun getBookingById(id: Long): LiveData<BookingAndAddress>{
         return bookingDao.getBookingById(id = id)
     }
 

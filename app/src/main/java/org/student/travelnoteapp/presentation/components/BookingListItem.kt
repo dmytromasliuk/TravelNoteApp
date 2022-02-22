@@ -1,10 +1,7 @@
 package org.student.travelnoteapp.presentation.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -32,11 +29,11 @@ fun BookingListItem(
         modifier = Modifier
             .background(MaterialTheme.colors.secondaryVariant)
             .fillMaxWidth()
-            .padding(15.dp)
+            .height(53.dp)
             .selectable(
                 selected = true,
                 onClick = {
-
+                    navController.navigate("booking_details_screen/${booking?.booking?.travelId}/${booking?.booking?.id}/${booking?.address?.id}")
                 }
             ),
         verticalAlignment = Alignment.CenterVertically,
@@ -46,13 +43,15 @@ fun BookingListItem(
             text = booking?.booking?.title.toString(),
             color = MaterialTheme.colors.primaryVariant,
             fontSize = MaterialTheme.typography.body1.fontSize,
-            fontWeight = FontWeight.Normal
+            fontWeight = FontWeight.Normal,
+            modifier = Modifier.padding(start = 10.dp)
         )
         Text(
             text = bookingAddressText,
             color = MaterialTheme.colors.primaryVariant,
             fontSize = MaterialTheme.typography.body1.fontSize,
-            fontWeight = FontWeight.Normal
+            fontWeight = FontWeight.Normal,
+            modifier = Modifier.padding(end = 10.dp)
         )
     }
 

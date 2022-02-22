@@ -29,13 +29,11 @@ fun PlaceListItem(
         modifier = Modifier
             .background(MaterialTheme.colors.secondaryVariant)
             .fillMaxWidth()
-            .padding(15.dp)
+            .height(53.dp)
             .selectable(
                 selected = true,
                 onClick = {
-//                    if (place != null) {
-//                        viewModel.deletePlace(place = place)
-//                    }
+                    navController.navigate("place_details_screen/${place?.travelId}/${place?.id}")
                 }
             ),
         verticalAlignment = Alignment.CenterVertically,
@@ -45,13 +43,21 @@ fun PlaceListItem(
             Row {
                 Icon(
                     imageVector = Icons.Default.ArrowRight,
-                    contentDescription = "Place Icon"
+                    contentDescription = "Place Icon",
+                    modifier = Modifier.padding(start = 5.dp)
                 )
                 Text(
                     text = place?.time.toString(),
                     color = MaterialTheme.colors.primaryVariant,
                     fontSize = MaterialTheme.typography.body1.fontSize,
                     fontWeight = FontWeight.Normal
+                )
+                Text(
+                    text = place?.date.toString().substring(0,5),
+                    color = MaterialTheme.colors.primaryVariant,
+                    fontSize = MaterialTheme.typography.body1.fontSize,
+                    fontWeight = FontWeight.Normal,
+                    modifier = Modifier.padding(start = 7.dp)
                 )
             }
         }
@@ -60,7 +66,8 @@ fun PlaceListItem(
                 text = place?.title.toString(),
                 color = MaterialTheme.colors.primaryVariant,
                 fontSize = MaterialTheme.typography.body1.fontSize,
-                fontWeight = FontWeight.Normal
+                fontWeight = FontWeight.Normal,
+                modifier = Modifier.padding(end = 10.dp)
             )
         }
     }

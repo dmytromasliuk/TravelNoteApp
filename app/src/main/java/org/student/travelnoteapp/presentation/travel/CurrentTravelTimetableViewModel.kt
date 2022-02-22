@@ -16,5 +16,4 @@ class CurrentTravelTimetableViewModel @Inject constructor(
 
     val travel: LiveData<TravelWithAllInfo> = travelRepository.getCurrentTravel()
 
-
 }

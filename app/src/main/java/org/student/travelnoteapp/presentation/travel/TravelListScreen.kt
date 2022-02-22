@@ -78,7 +78,7 @@ fun TravelListScreen(
                     modifier = Modifier
                         .background(MaterialTheme.colors.secondary)
                         .fillMaxWidth()
-                        .padding(20.dp)
+                        .height(70.dp)
                         .selectable(
                             selected = true,
                             onClick = {
@@ -93,7 +93,8 @@ fun TravelListScreen(
                             text = travel.travel.name,
                             color = MaterialTheme.colors.primary,
                             fontSize = MaterialTheme.typography.body1.fontSize,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(start = 10.dp)
                         )
                     }
                     Column {

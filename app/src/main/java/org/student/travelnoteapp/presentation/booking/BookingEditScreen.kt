@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,12 +17,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import org.student.travelnoteapp.data.room.model.Address
+import org.student.travelnoteapp.data.room.model.Booking
 
 @Composable
 fun BookingEditScreen(
     navController: NavController,
     viewModel: BookingEditViewModel = hiltViewModel(),
-    id: Long
+    travelId: Long,
+    bookingId: Long,
+    addressId: Long
 ) {
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -40,25 +45,61 @@ fun BookingEditScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(
-                    text = "Add new booking",
-                    color = MaterialTheme.colors.background,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(start = 15.dp)
-                )
-                IconButton(
-                    onClick = {
-                        viewModel.addBooking(id)
-                        navController.navigate("travel_details_screen/$id")
-                    },
-                    modifier = Modifier.padding(end = 15.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Done,
-                        contentDescription = "Add booking icon",
-                        tint = MaterialTheme.colors.background
+                Column {
+                    Text(
+                        text = "Add new booking",
+                        color = MaterialTheme.colors.background,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(start = 15.dp)
                     )
+                }
+                Column {
+                    Row {
+                        IconButton(
+                            onClick = {
+                                viewModel.deleteBooking(bookingId, addressId)
+                                navController.navigate("travel_details_screen/$travelId")
+                            },
+                            modifier = Modifier.padding(end = 15.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Delete,
+                                contentDescription = "Delete booking icon",
+                                tint = MaterialTheme.colors.background
+                            )
+                        }
+                        IconButton(
+                            onClick = {
+                                val booking = Booking(
+                                    bookingId,
+                                    travelId,
+                                    addressId,
+                                    viewModel.title.value,
+                                    viewModel.email.value,
+                                    viewModel.phone.value,
+                                    viewModel.price.value
+                                )
+                                val address = Address(
+                                    addressId,
+                                    viewModel.apartment.value,
+                                    viewModel.building.value,
+                                    viewModel.street.value,
+                                    viewModel.city.value,
+                                    viewModel.country.value
+                                )
+                                viewModel.updateBooking(booking, address)
+                                navController.navigate("travel_details_screen/$travelId")
+                            },
+                            modifier = Modifier.padding(end = 15.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Done,
+                                contentDescription = "Add booking icon",
+                                tint = MaterialTheme.colors.background
+                            )
+                        }
+                    }
                 }
             }
         }
