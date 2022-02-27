@@ -149,47 +149,4 @@ fun TravelDetailsScreen(
         }
     }
 
-//    Column(
-//        modifier = Modifier.fillMaxSize(),
-//        horizontalAlignment = Alignment.CenterHorizontally,
-//        verticalArrangement = Arrangement.Center
-//    ) {
-//        Column(
-//            modifier = Modifier.fillMaxSize(),
-//            horizontalAlignment = Alignment.CenterHorizontally,
-//            verticalArrangement = Arrangement.Center
-//        ) {
-//            Text(
-//                modifier = Modifier.padding(bottom = 25.dp),
-//                text = "Travel details",
-//                color = MaterialTheme.colors.primary,
-//                fontWeight = FontWeight.Bold,
-//                fontSize = MaterialTheme.typography.h4.fontSize
-//            )
-//            TravelDetailsItem(tag = "Title:", description = viewModel.getTravel(id).observeAsState().value?.travel?.name.toString())
-//            TravelDetailsItem(tag = "Description:", description = viewModel.getTravel(id).observeAsState().value?.travel?.description.toString())
-//
-//            //EditTravelButton
-//            Button(
-//                onClick = {
-//                    navController.navigate("travel_edit_screen/$id"){
-//                        popUpTo(Screen.TravelList.route){
-//                            inclusive = true
-//                        }
-//                    }
-//                },
-//                modifier = Modifier
-//                    .padding(10.dp)
-//                    .size(150.dp, 40.dp)
-//            ) {
-//                Text(
-//                    text = "Edit",
-//                    color = MaterialTheme.colors.secondary,
-//                    fontWeight = FontWeight.Bold,
-//                    fontSize = MaterialTheme.typography.button.fontSize
-//                )
-//            }
-//        }
-//    }
-
 }

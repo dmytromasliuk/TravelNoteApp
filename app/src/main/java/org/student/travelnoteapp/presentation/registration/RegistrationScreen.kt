@@ -1,7 +1,5 @@
 package org.student.travelnoteapp.presentation.registration
 
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -13,7 +11,6 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -26,8 +23,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.student.travelnoteapp.R
-import org.student.travelnoteapp.data.remote.models.requests.RegistrationRequest
-import org.student.travelnoteapp.data.remote.services.RegistrationService
 import org.student.travelnoteapp.presentation.util.Screen
 
 @Composable

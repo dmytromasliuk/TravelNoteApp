@@ -1,10 +1,6 @@
 package org.student.travelnoteapp.data.room.repository
 
-import android.app.Application
-import androidx.compose.runtime.MutableState
 import androidx.lifecycle.LiveData
-import kotlinx.coroutines.flow.Flow
-import org.student.travelnoteapp.data.room.TravelDatabase
 import org.student.travelnoteapp.data.room.dao.TravelDao
 import org.student.travelnoteapp.data.room.model.Travel
 import org.student.travelnoteapp.data.room.model.relations.TravelWithAllInfo

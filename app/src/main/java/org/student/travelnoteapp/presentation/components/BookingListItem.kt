@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import org.student.travelnoteapp.data.room.model.Booking
 import org.student.travelnoteapp.data.room.model.relations.BookingAndAddress
 
 @Composable

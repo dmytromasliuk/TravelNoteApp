@@ -1,14 +1,12 @@
 package org.student.travelnoteapp.presentation.util
 
-import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavArgument
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import org.student.travelnoteapp.data.room.model.Ticket
+import org.student.travelnoteapp.data.room.model.Profile
 import org.student.travelnoteapp.presentation.booking.AddBookingScreen
 import org.student.travelnoteapp.presentation.booking.BookingDetailsScreen
 import org.student.travelnoteapp.presentation.booking.BookingEditScreen
@@ -23,7 +21,6 @@ import org.student.travelnoteapp.presentation.ticket.AddTicketScreen
 import org.student.travelnoteapp.presentation.ticket.TicketDetailsScreen
 import org.student.travelnoteapp.presentation.ticket.TicketEditScreen
 import org.student.travelnoteapp.presentation.travel.*
-import timber.log.Timber
 
 @Composable
 fun NavGraph(
@@ -46,7 +43,11 @@ fun NavGraph(
         composable(
             route = Screen.Profile.route
         ){
-            ProfileScreen(navController = navController)
+            val profile = navController
+                .previousBackStackEntry
+                ?.arguments
+                ?.getParcelable<Profile>("profile")
+            ProfileScreen(profile, navController = navController)
         }
         composable(
             route = Screen.ProfileUpdate.route

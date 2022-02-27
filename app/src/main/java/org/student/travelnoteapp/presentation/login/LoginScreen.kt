@@ -1,7 +1,6 @@
 package org.student.travelnoteapp.presentation.login
 
-import android.content.Intent
-import android.net.Uri
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -9,9 +8,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -20,11 +21,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.startActivity
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.student.travelnoteapp.R
+import org.student.travelnoteapp.data.room.model.Profile
 import org.student.travelnoteapp.presentation.util.Screen
 import timber.log.Timber
 
@@ -33,6 +36,10 @@ fun LoginScreen(
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
+
+    val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
+
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -115,17 +122,39 @@ fun LoginScreen(
             )
         )
 
+        val profileResponse = viewModel.profileResponse.observeAsState().value
+        var profile: Profile?
         //SignInButton
         Button(
             onClick = {
-//                viewModel.login()
-//                if (viewModel.getProfileResponse() == null){
-//                    Timber.d("Login denied...")
-//                } else {
-//                    Timber.d("Login success!!!")
-//                    navController.navigate(route = Screen.TravelList.route)
-//                }
-                navController.navigate(route = Screen.TravelList.route)
+                viewModel.login()
+                if (profileResponse == null){
+                    Toast.makeText(context, "Login denied...", Toast.LENGTH_SHORT).show()
+                } else {
+                    coroutineScope.launch(Dispatchers.Main) {
+                        val result = viewModel.isExistsByEmail(profileResponse.email)
+                        if (result){
+                            profile = viewModel.getProfileByEmail(email = profileResponse.email)//TODO: problem here =(
+                            profile?.id?.let {
+                                Profile(
+                                    it,
+                                    profileResponse.firstName,
+                                    profileResponse.lastName,
+                                    profileResponse.email,
+                                    profileResponse.phone,
+                                    profileResponse.country
+                                )
+                            }?.let {
+                                navController.currentBackStackEntry?.arguments?.putParcelable("profile", profile)
+                                viewModel.updateProfile(profile!!)
+                            }
+                        } else {
+                            viewModel.createProfile()
+                        }
+                    }
+                    navController.navigate(route = Screen.TravelList.route)
+                    Toast.makeText(context, "Login success!", Toast.LENGTH_SHORT).show()
+                }
             },
             modifier = Modifier
                 .padding(10.dp)

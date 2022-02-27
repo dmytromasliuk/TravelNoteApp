@@ -12,7 +12,6 @@ import org.student.travelnoteapp.data.room.model.Address
 import org.student.travelnoteapp.data.room.model.Booking
 import org.student.travelnoteapp.data.room.repository.AddressRepository
 import org.student.travelnoteapp.data.room.repository.BookingRepository
-import org.student.travelnoteapp.data.room.repository.TravelRepository
 import javax.inject.Inject
 
 @HiltViewModel

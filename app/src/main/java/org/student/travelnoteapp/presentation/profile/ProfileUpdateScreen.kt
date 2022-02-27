@@ -176,11 +176,3 @@ fun ProfileUpdateScreen(
         )
     }
 }
-
-@Composable
-@Preview(showBackground = true)
-fun ProfileUpdateScreenPreview() {
-    ProfileScreen(
-        navController = rememberNavController()
-    )
-}

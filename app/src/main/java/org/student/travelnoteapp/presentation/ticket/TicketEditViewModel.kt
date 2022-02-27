@@ -12,7 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.student.travelnoteapp.data.room.model.Ticket
 import org.student.travelnoteapp.data.room.repository.TicketRepository
-import org.student.travelnoteapp.data.room.repository.TravelRepository
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject

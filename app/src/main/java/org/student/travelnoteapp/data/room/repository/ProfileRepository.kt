@@ -14,8 +14,24 @@ class ProfileRepository @Inject constructor(
         return profileDao.getProfileById(id)
     }
 
+    fun getProfileByEmail(email: String): LiveData<ProfileAndTravel>{
+        return profileDao.getProfileByEmail(email)
+    }
+
+    suspend fun createProfile(profile: Profile){
+        profileDao.createProfile(profile)
+    }
+
     suspend fun updateProfile(profile: Profile){
         profileDao.updateProfile(profile = profile)
     }
+
+    suspend fun isExistByEmail(email: String): Boolean{
+        return profileDao.isExistByEmail(email)
+    }
+
+    /*fun getProfileIdByEmail(email: String): Long {
+        return profileDao.getProfileIdByEmail(email)
+    }*/
 
 }

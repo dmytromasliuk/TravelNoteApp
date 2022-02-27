@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -14,10 +13,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import org.student.travelnoteapp.data.room.model.Travel
 import org.student.travelnoteapp.data.room.model.relations.TravelWithAllInfo
 import org.student.travelnoteapp.presentation.travel.TravelListViewModel
-import org.student.travelnoteapp.presentation.util.Screen
 
 @Composable
 fun TravelListItem(

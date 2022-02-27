@@ -3,8 +3,6 @@ package org.student.travelnoteapp.data.room.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import org.student.travelnoteapp.data.room.model.Place
-import org.student.travelnoteapp.data.room.model.Ticket
-import org.student.travelnoteapp.data.room.model.Travel
 
 @Dao
 interface PlaceDao {

@@ -11,12 +11,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.compose.material.Surface
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 import org.student.travelnoteapp.presentation.components.BottomNavItem
-import org.student.travelnoteapp.data.remote.services.RegistrationService
 import org.student.travelnoteapp.presentation.components.MainScaffold
 import org.student.travelnoteapp.presentation.ui.theme.TravelNoteAppTheme
 import org.student.travelnoteapp.presentation.util.NavGraph
@@ -31,8 +28,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TravelNoteAppTheme {
-                val systemUiController = rememberSystemUiController()
-                //systemUiController.isStatusBarVisible = false
                 Surface(
                     modifier = Modifier
                         .fillMaxSize()

@@ -1,6 +1,5 @@
 package org.student.travelnoteapp.data.room.model.relations
 
-import androidx.lifecycle.LiveData
 import androidx.room.Embedded
 import androidx.room.Relation
 import org.student.travelnoteapp.data.room.model.Booking

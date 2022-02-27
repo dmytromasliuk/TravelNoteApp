@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -18,14 +17,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.navigation.NavController
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import org.student.travelnoteapp.data.room.model.Travel
 import org.student.travelnoteapp.data.room.model.relations.TravelWithAllInfo
-import org.student.travelnoteapp.presentation.components.TravelListItem
-import org.student.travelnoteapp.presentation.util.Screen
 
 @Composable
 fun TravelListScreen(

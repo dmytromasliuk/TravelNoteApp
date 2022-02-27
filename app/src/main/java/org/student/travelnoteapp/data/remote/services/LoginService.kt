@@ -7,8 +7,6 @@ import io.ktor.client.features.auth.*
 import io.ktor.client.features.auth.providers.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
-import org.student.travelnoteapp.data.remote.models.requests.LoginRequest
-import org.student.travelnoteapp.data.remote.models.requests.RegistrationRequest
 import org.student.travelnoteapp.data.remote.models.responses.ProfileResponse
 
 interface LoginService {
@@ -32,6 +30,7 @@ interface LoginService {
                             credentials {
                                 BasicAuthCredentials(email, password)
                             }
+                            sendWithoutRequest { true }
                         }
                     }
                 }

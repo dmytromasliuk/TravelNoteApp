@@ -2,28 +2,27 @@ package org.student.travelnoteapp.presentation.profile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import org.student.travelnoteapp.data.room.model.Profile
 import org.student.travelnoteapp.presentation.util.Screen
 
 
 @Composable
 fun ProfileScreen (
+    profile: Profile?,
     navController : NavController,
     viewModel: ProfileViewModel = hiltViewModel()
 ) {
@@ -57,6 +56,8 @@ fun ProfileScreen (
             }
         }
 
+
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -80,6 +81,7 @@ fun ProfileScreen (
                             contentDescription = "First name icon")
                     }
                 },
+                readOnly = true,
                 modifier = Modifier.padding(5.dp),
                 maxLines = 1,
                 keyboardOptions = KeyboardOptions(
@@ -104,6 +106,7 @@ fun ProfileScreen (
                             contentDescription = "Last name icon")
                     }
                 },
+                readOnly = true,
                 modifier = Modifier.padding(5.dp),
                 maxLines = 1,
                 keyboardOptions = KeyboardOptions(
@@ -128,6 +131,7 @@ fun ProfileScreen (
                             contentDescription = "Email icon")
                     }
                 },
+                readOnly = true,
                 modifier = Modifier.padding(5.dp),
                 maxLines = 1,
                 keyboardOptions = KeyboardOptions(
@@ -135,6 +139,11 @@ fun ProfileScreen (
                     imeAction = ImeAction.Done
                 )
             )
+
+            var phoneUpdateState by remember{ mutableStateOf(false) }
+            val inPhoneUpdateState = if (phoneUpdateState)
+                Icons.Default.Done
+            else Icons.Default.Edit
 
             //phoneTextField
             OutlinedTextField(
@@ -154,10 +163,10 @@ fun ProfileScreen (
                 },
                 trailingIcon = {
                     IconButton(onClick = {
-
+                        phoneUpdateState = !phoneUpdateState
                     }) {
                         Icon(
-                            imageVector = Icons.Filled.Edit,
+                            imageVector = inPhoneUpdateState,
                             contentDescription = "Edit icon")
                     }
                 },
@@ -170,6 +179,11 @@ fun ProfileScreen (
             )
 
             //CountryTextField
+            var countryUpdateState by remember{ mutableStateOf(false) }
+            val inCountryUpdateState = if (countryUpdateState)
+                Icons.Default.Done
+            else Icons.Default.Edit
+
             OutlinedTextField(
                 value = viewModel.countryText.value,
                 onValueChange = {
@@ -187,10 +201,10 @@ fun ProfileScreen (
                 },
                 trailingIcon = {
                     IconButton(onClick = {
-
+                        countryUpdateState = !countryUpdateState
                     }) {
                         Icon(
-                            imageVector = Icons.Filled.Edit,
+                            imageVector = inCountryUpdateState,
                             contentDescription = "Edit icon")
                     }
                 },
@@ -226,12 +240,4 @@ fun ProfileScreen (
             }
         }
     }
-}
-
-@Composable
-@Preview(showBackground = true)
-fun ProfileScreenPreview() {
-    ProfileScreen(
-        navController = rememberNavController()
-    )
 }

@@ -1,7 +1,6 @@
 package org.student.travelnoteapp.data.room.repository
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
 import org.student.travelnoteapp.data.room.dao.BookingDao
 import org.student.travelnoteapp.data.room.model.Address
 import org.student.travelnoteapp.data.room.model.Booking

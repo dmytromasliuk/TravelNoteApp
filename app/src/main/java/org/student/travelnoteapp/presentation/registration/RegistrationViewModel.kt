@@ -9,7 +9,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.student.travelnoteapp.data.remote.models.requests.RegistrationRequest
 import org.student.travelnoteapp.data.remote.services.RegistrationService
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel

@@ -1,9 +1,7 @@
 package org.student.travelnoteapp.data.room.dao
 
-import androidx.compose.runtime.MutableState
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
 import org.student.travelnoteapp.data.room.model.Ticket
 import org.student.travelnoteapp.data.room.model.Travel
 import org.student.travelnoteapp.data.room.model.relations.TravelWithAllInfo

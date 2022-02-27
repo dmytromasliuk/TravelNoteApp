@@ -1,7 +1,6 @@
 package org.student.travelnoteapp.data.room.repository
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
 import org.student.travelnoteapp.data.room.dao.TicketDao
 import org.student.travelnoteapp.data.room.model.Ticket
 import javax.inject.Inject
